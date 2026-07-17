@@ -23,7 +23,6 @@ window.__WA = { num: '5544988223821', msg: 'Olá, vi o site e quero um orçament
 document.addEventListener('DOMContentLoaded', function () {
   var link = 'https://wa.me/' + window.__WA.num + '?text=' + encodeURIComponent(window.__WA.msg);
   document.querySelectorAll('[data-wa]').forEach(function (a) { a.setAttribute('href', link); a.target = '_blank'; a.rel = 'noopener'; });
-  setTimeout(function () { var f = document.getElementById('wafab'); if (f) f.classList.add('in'); }, 2400);
   setTimeout(function () { if (!window.__revealed) { document.documentElement.classList.add('failsafe'); document.body.classList.remove('lock'); } }, 4200);
 });
 </script>
@@ -289,19 +288,11 @@ footer{padding:64px var(--pad) 32px;text-align:center;}
 .footer-contact svg{width:19px;height:19px;}
 .footer-bottom{border-top:1px solid var(--line);padding-top:22px;color:var(--faint);font-family:var(--mono);font-size:0.75rem;}
 
-/* ===== WHATSAPP FLOAT ===== */
-#wafab{position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:700;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 32px -8px rgba(0,0,0,0.5);opacity:0;transform:scale(0);transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .4s;}
-#wafab.in{opacity:1;transform:scale(1);}
-#wafab:hover{transform:scale(1.08);}
-#wafab svg{width:29px;height:29px;position:relative;z-index:2;}
-#wafab .wa-pulse{position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(37,211,102,.5);animation:wapulse 2.6s infinite;}
-@keyframes wapulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5);}70%{box-shadow:0 0 0 16px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
-
 /* ===== GRID BACKGROUND (cursor reveal) ===== */
 #grid-base,#grid-reveal{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--gc) 1px,transparent 1px),linear-gradient(90deg,var(--gc) 1px,transparent 1px);background-size:46px 46px;}
 #grid-base{--gc:rgba(246,245,251,0.4);opacity:0.035;}
 #grid-reveal{--gc:var(--accent);opacity:0.22;-webkit-mask-image:radial-gradient(320px circle at var(--mx,-999px) var(--my,-999px),#000 0%,rgba(0,0,0,0.3) 45%,transparent 72%);mask-image:radial-gradient(320px circle at var(--mx,-999px) var(--my,-999px),#000 0%,rgba(0,0,0,0.3) 45%,transparent 72%);}
-main,#nav,#mq,footer,#wafab,#loader{position:relative;z-index:1;}
+main,#nav,#mq,footer,#loader{position:relative;z-index:1;}
 
 /* ===== FAILSAFE / REDUCED MOTION ===== */
 html.failsafe #loader{display:none !important;}
@@ -317,11 +308,6 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
 
 <div id="grid-base" aria-hidden="true"></div>
 <div id="grid-reveal" aria-hidden="true"></div>
-
-<a id="wafab" href="#" data-wa aria-label="Falar no WhatsApp">
-  <span class="wa-pulse"></span>
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.2.84.85-3.12-.2-.32a8.21 8.21 0 0 1-1.26-4.39c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
-</a>
 
 <!-- LOADER -->
 <div id="loader">
