@@ -23,7 +23,6 @@ window.__WA = { num: '5544988223821', msg: 'Olá, vi o site e quero um orçament
 document.addEventListener('DOMContentLoaded', function () {
   var link = 'https://wa.me/' + window.__WA.num + '?text=' + encodeURIComponent(window.__WA.msg);
   document.querySelectorAll('[data-wa]').forEach(function (a) { a.setAttribute('href', link); a.target = '_blank'; a.rel = 'noopener'; });
-  setTimeout(function () { if (!window.__revealed) { document.documentElement.classList.add('failsafe'); document.body.classList.remove('lock'); } }, 4200);
 });
 </script>
 
@@ -53,7 +52,6 @@ html{overflow-x:hidden;scroll-behavior:smooth;}
 }
 
 body{background:var(--bg);color:var(--paper);font-family:var(--body);line-height:1.6;overflow-x:hidden;}
-body.lock{overflow:hidden;height:100vh;}
 ::selection{background:var(--accent);color:#fff;}
 ::-webkit-scrollbar{width:0;height:0;}
 a{color:inherit;text-decoration:none;}
@@ -63,19 +61,6 @@ img{max-width:100%;display:block;}
 .mono{font-family:var(--mono);}
 .label{font-family:var(--mono);font-size:clamp(0.62rem,0.85vw,0.74rem);letter-spacing:0.2em;text-transform:uppercase;}
 p,li{text-wrap:pretty;}
-
-/* ===== LOADER ===== */
-#loader{position:fixed;inset:0;z-index:9000;}
-.lo-cols{position:absolute;inset:0;display:flex;}
-.lo-cols span{flex:1;background:var(--bg2);height:100%;}
-.lo-mid{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(24px,5vh,54px);padding:var(--pad);pointer-events:none;}
-#lo-name{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,9vw,7rem);letter-spacing:-0.03em;text-align:center;}
-#lo-name .ast{color:var(--accent);}
-.lo-bottom{display:flex;align-items:center;gap:16px;width:min(420px,82vw);}
-.lo-track{flex:1;height:1px;background:var(--line);position:relative;overflow:hidden;}
-.lo-fill{position:absolute;inset:0;width:0%;background:var(--grad);}
-#lo-count{font-family:var(--mono);color:var(--accent);font-size:0.78rem;}
-.lo-tag{font-family:var(--mono);color:var(--faint);font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;}
 
 /* ===== NAV ===== */
 #nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);background:var(--grad);border-bottom:1px solid rgba(255,255,255,0.12);transition:transform .5s cubic-bezier(.16,1,.3,1);}
@@ -113,10 +98,12 @@ p,li{text-wrap:pretty;}
 .badge .bc{position:absolute;width:38%;height:38%;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .hero-visuals{position:absolute;inset:0;z-index:1;pointer-events:none;display:flex;align-items:center;justify-content:flex-end;padding-right:clamp(20px,6vw,100px);}
-.hero-logo-float{width:clamp(140px,18vw,260px);height:auto;opacity:0;animation:logoIn 1.1s ease .3s forwards, logoFloat 8s ease-in-out infinite 1.4s;filter:drop-shadow(0 30px 60px rgba(224,24,138,0.25));}
+.hero-logo-float{width:clamp(200px,26vw,380px);height:auto;opacity:0;animation:logoIn 1.1s ease .3s forwards, logoFloat 8s ease-in-out infinite 1.4s;filter:drop-shadow(0 30px 60px rgba(224,24,138,0.25));}
 @keyframes logoIn{from{opacity:0;transform:translateY(24px) scale(.92);}to{opacity:.92;transform:translateY(0) scale(1);}}
 @keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-18px) rotate(3deg);}}
 @media(max-width:980px){.hero-visuals{display:none;}}
+.hero-logo-mobile{display:none;}
+@media(max-width:980px){.hero-logo-mobile{display:block;width:clamp(64px,20vw,100px);height:auto;margin-bottom:clamp(18px,4vw,28px);}}
 
 /* ===== MARQUEE ===== */
 #mq{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;}
@@ -128,8 +115,7 @@ p,li{text-wrap:pretty;}
 
 /* ===== SHELL ===== */
 .wrap{max-width:1280px;margin:0 auto;padding:0 var(--pad);}
-.kick{display:flex;align-items:center;gap:12px;color:var(--accent);margin-bottom:clamp(24px,3.5vw,44px);}
-.kick .ix{width:26px;height:1px;background:var(--accent);}
+.kick{display:flex;align-items:center;color:var(--accent);margin-bottom:clamp(24px,3.5vw,44px);}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 
@@ -223,7 +209,6 @@ p,li{text-wrap:pretty;}
 /* ===== GUARANTEE ===== */
 #guar{background:var(--grad);color:#fff;padding:var(--gap) 0;overflow:hidden;}
 #guar .kick{color:rgba(255,255,255,0.85);}
-#guar .kick .ix{background:rgba(255,255,255,0.85);}
 .guar-h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.96;font-size:clamp(2.2rem,7vw,6.2rem);}
 .guar-h2 .out{-webkit-text-stroke:1.5px rgba(255,255,255,0.9);color:transparent;}
 .guar-h2 .it{text-transform:none;-webkit-text-stroke:0;color:#fff;}
@@ -272,55 +257,35 @@ p,li{text-wrap:pretty;}
 .final-h2.in .ln>span{transform:translateY(0);}
 .final-h2 .it{text-transform:none;font-size:1.05em;}
 .final-body{font-size:1.05rem;line-height:1.6;color:var(--soft);margin:clamp(24px,3.4vw,40px) auto;max-width:42ch;position:relative;z-index:1;}
-.final-actions{position:relative;z-index:1;}
+.final-actions{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:16px;}
 .final-actions .btn{position:relative;}
 .final-actions .btn::after{content:'';position:absolute;inset:-6px;border-radius:999px;border:1px solid rgba(224,24,138,0.5);opacity:0;transition:opacity .5s ease;pointer-events:none;}
 .final-actions.in .btn::after{opacity:1;animation:finalRing 2.4s ease-out infinite;}
 @keyframes finalRing{0%{transform:scale(1);opacity:.7;}100%{transform:scale(1.18);opacity:0;}}
-.final-fine{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:20px;position:relative;z-index:1;}
+.final-fine{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);position:relative;z-index:1;}
 
 /* ===== FOOTER ===== */
 footer{padding:64px var(--pad) 32px;text-align:center;}
-.footer-logo-img{width:min(60vw,300px);margin:0 auto 32px;}
+.footer-logo-img{width:min(70vw,420px);margin:0 auto 32px;}
 .footer-contact{display:flex;justify-content:center;gap:26px;margin-bottom:32px;flex-wrap:wrap;}
 .footer-contact a{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);color:var(--soft);transition:border-color .25s,color .25s,transform .25s;}
 .footer-contact a:hover{border-color:var(--accent);color:var(--paper);transform:translateY(-3px);}
 .footer-contact svg{width:19px;height:19px;}
 .footer-bottom{border-top:1px solid var(--line);padding-top:22px;color:var(--faint);font-family:var(--mono);font-size:0.75rem;}
 
-/* ===== GRID BACKGROUND (cursor reveal) ===== */
-#grid-base,#grid-reveal{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--gc) 1px,transparent 1px),linear-gradient(90deg,var(--gc) 1px,transparent 1px);background-size:46px 46px;}
-#grid-base{--gc:rgba(246,245,251,0.4);opacity:0.035;}
-#grid-reveal{--gc:var(--accent);opacity:0.22;-webkit-mask-image:radial-gradient(320px circle at var(--mx,-999px) var(--my,-999px),#000 0%,rgba(0,0,0,0.3) 45%,transparent 72%);mask-image:radial-gradient(320px circle at var(--mx,-999px) var(--my,-999px),#000 0%,rgba(0,0,0,0.3) 45%,transparent 72%);}
-main,#nav,#mq,footer,#loader{position:relative;z-index:1;}
+/* ===== CURSOR GLOW ===== */
+#grid-reveal{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(320px circle at var(--mx,-999px) var(--my,-999px),rgba(224,24,138,0.16),transparent 70%);}
+main,#nav,#mq,footer{position:relative;z-index:1;}
 
-/* ===== FAILSAFE / REDUCED MOTION ===== */
-html.failsafe #loader{display:none !important;}
-html.failsafe body{overflow:auto !important;height:auto !important;}
+/* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
-  #loader{display:none !important;}
-  body.lock{overflow:auto !important;height:auto !important;}
 }
 </style>
 </head>
-<body class="lock">
+<body>
 
-<div id="grid-base" aria-hidden="true"></div>
 <div id="grid-reveal" aria-hidden="true"></div>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="lo-cols"><span></span><span></span><span></span><span></span><span></span></div>
-  <div class="lo-mid">
-    <h1 id="lo-name">MIKLA<span class="ast">*</span></h1>
-    <div class="lo-bottom">
-      <span id="lo-count">000</span>
-      <div class="lo-track"><div class="lo-fill"></div></div>
-      <span class="lo-tag">Presença digital</span>
-    </div>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -345,6 +310,7 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
     <img src="logo.png" alt="" class="hero-logo-float">
   </div>
   <div id="hero-inner">
+    <img src="logo.png" alt="Mikla" class="hero-logo-mobile">
     <h1 class="hero-h1">
       <span class="ln"><span>Sites que <span class="it">vendem.</span></span></span>
     </h1>
@@ -432,9 +398,9 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
 <section id="proc">
   <div class="proc-track" id="proc-track">
     <div class="proc-intro">
-      <span class="kick label"><span class="ix"></span> Como funciona</span>
+      <span class="kick label">Como funciona</span>
       <h2>Do briefing<br>ao <span class="it">ar.</span></h2>
-      <p class="proc-meta">Do zero · Rodadas de ajuste inclusas · Sem enrolação</p>
+      <p class="proc-meta">Landing pages em 48h úteis · Demais sites, consulte condições</p>
     </div>
     <div class="panel">
       <div class="panel-top"><span class="panel-num">01</span><span class="panel-day">Dia 1<br>Briefing</span></div>
@@ -506,7 +472,7 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
 <!-- GARANTIA -->
 <section id="guar">
   <div class="wrap">
-    <span class="kick label"><span class="ix"></span> Garantia</span>
+    <span class="kick label">Garantia</span>
     <h2 class="guar-h2"><span class="out">Compromisso</span> <span class="it">total.</span></h2>
     <div class="guar-foot">
       <p class="guar-body">Trabalhamos com rodadas de ajuste incluídas e acompanhamento contínuo depois da entrega. Se algo não representa seu negócio como deveria, a gente ajusta até representar.</p>
@@ -562,7 +528,7 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
 <!-- FINAL -->
 <section id="final">
   <div class="wrap">
-    <span class="kick label"><span class="ix"></span> Chega de perder cliente por falta de site</span>
+    <span class="kick label">Chega de perder cliente por falta de site</span>
     <h2 class="final-h2">
       <span class="ln"><span>Bora colocar</span></span>
       <span class="ln"><span>seu negócio</span></span>
@@ -599,39 +565,6 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
 
 <script>
 (function(){
-  var revealed = false;
-
-  /* ---------- LOADER ---------- */
-  function runLoader(){
-    var fill = document.querySelector('.lo-fill');
-    var count = document.getElementById('lo-count');
-    var loader = document.getElementById('loader');
-    var n = 0;
-    var iv = setInterval(function(){
-      n += Math.random()*18 + 6;
-      if(n >= 100){ n = 100; clearInterval(iv); finishLoad(); }
-      if(fill) fill.style.width = n + '%';
-      if(count) count.textContent = String(Math.floor(n)).padStart(3,'0');
-    }, 90);
-  }
-  function finishLoad(){
-    if(revealed) return;
-    revealed = true; window.__revealed = true;
-    var loader = document.getElementById('loader');
-    document.body.classList.remove('lock');
-    if(window.gsap){
-      gsap.to(loader.querySelectorAll('.lo-cols span'), {
-        yPercent: -100, duration: .8, stagger: .06, ease: 'power3.inOut', delay: .15,
-        onComplete: function(){ loader.style.display = 'none'; }
-      });
-      gsap.to('.lo-mid', { opacity: 0, duration: .4, delay: .1 });
-    } else {
-      loader.style.transition = 'opacity .5s ease';
-      loader.style.opacity = '0';
-      setTimeout(function(){ loader.style.display = 'none'; }, 500);
-    }
-  }
-  setTimeout(runLoader, 250);
 
   /* ---------- NAV hide on scroll ---------- */
   var lastY = 0, nav = document.getElementById('nav');
@@ -650,16 +583,18 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
     }
   });
 
-  /* ---------- Magnetic buttons ---------- */
-  document.querySelectorAll('.magnetic').forEach(function(el){
-    el.addEventListener('mousemove', function(e){
-      var r = el.getBoundingClientRect();
-      var x = e.clientX - r.left - r.width/2;
-      var y = e.clientY - r.top - r.height/2;
-      el.style.transform = 'translate(' + (x*0.18) + 'px,' + (y*0.28) + 'px)';
+  /* ---------- Magnetic buttons (apenas em dispositivos com mouse) ---------- */
+  if(window.matchMedia && window.matchMedia('(pointer: fine)').matches){
+    document.querySelectorAll('.magnetic').forEach(function(el){
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width/2;
+        var y = e.clientY - r.top - r.height/2;
+        el.style.transform = 'translate(' + (x*0.18) + 'px,' + (y*0.28) + 'px)';
+      });
+      el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
     });
-    el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
-  });
+  }
 
   /* ---------- Scroll reveal ---------- */
   var revealEls = document.querySelectorAll('.reveal');
