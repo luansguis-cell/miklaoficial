@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mikla* · Sites que fecham cliente</title>
-<meta name="description" content="Sites, redes sociais, catálogos e ferramentas digitais para MEIs, autônomos e pequenos negócios. Sem template. Sem enrolação.">
+<meta name="description" content="Sites, redes sociais, catálogos e ferramentas digitais para MEIs, autônomos e pequenos negócios. Sem enrolação.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mikla* · Sites que fecham cliente">
 <meta property="og:description" content="Pra quem já vende pelo Instagram e quer um site que fecha o cliente 24h por dia.">
@@ -79,22 +79,19 @@ p,li{text-wrap:pretty;}
 .lo-tag{font-family:var(--mono);color:var(--faint);font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;}
 
 /* ===== NAV ===== */
-#nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);background:rgba(7,6,13,0.5);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:transform .5s cubic-bezier(.16,1,.3,1);}
+#nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);background:var(--grad);border-bottom:1px solid rgba(255,255,255,0.12);transition:transform .5s cubic-bezier(.16,1,.3,1);}
 #nav.up{transform:translateY(-130%);}
 .nav-logo img{height:32px;width:auto;}
 .nav-mid{display:flex;gap:28px;}
-.nav-mid a{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);transition:color .25s;}
-.nav-mid a:hover{color:var(--paper);}
-.nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;}
-.nav-cta .dt{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:.4;}}
+.nav-mid a{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.78);transition:color .25s;}
+.nav-mid a:hover{color:#fff;}
+.nav-btn{background:rgba(255,255,255,0.16);padding:10px 10px 10px 20px;font-size:0.85rem;gap:10px;}
+.nav-btn .ar{width:28px;height:28px;background:#fff;color:var(--navy);}
+.nav-btn:hover{transform:none;box-shadow:none;background:rgba(255,255,255,0.26);}
 @media(max-width:860px){.nav-mid{display:none;}}
 
 /* ===== HERO ===== */
 #hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:130px var(--pad) clamp(40px,6vh,70px);overflow:hidden;}
-.hero-top{position:absolute;top:clamp(96px,14vh,150px);left:var(--pad);right:var(--pad);z-index:2;}
-.hero-tag{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;padding:9px 16px;background:rgba(255,255,255,0.03);}
-.hero-tag .dt{width:7px;height:7px;border-radius:50%;background:var(--accent);}
 #hero-inner{position:relative;z-index:2;}
 .hero-h1{font-size:var(--fs-mega);text-transform:uppercase;font-family:var(--disp);font-weight:800;letter-spacing:-0.035em;line-height:0.86;}
 .hero-h1 .ln{display:block;overflow:hidden;padding-top:0.2em;margin-top:-0.2em;}
@@ -116,18 +113,10 @@ p,li{text-wrap:pretty;}
 .badge text{font-family:var(--mono);font-size:8px;letter-spacing:0.12em;fill:var(--paper);text-transform:uppercase;}
 .badge .bc{position:absolute;width:38%;height:38%;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.hero-visuals{position:absolute;inset:0;z-index:1;pointer-events:none;}
-.hero-card{position:absolute;width:170px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0d0c18;box-shadow:0 30px 70px -25px rgba(0,0,0,0.65);opacity:0;animation:cardIn .9s ease forwards,floaty 7s ease-in-out infinite;}
-.hero-card .bar{display:flex;gap:5px;padding:8px 10px;background:#111022;border-bottom:1px solid var(--line);}
-.hero-card .bar span{width:5px;height:5px;border-radius:50%;background:#33324a;}
-.hero-card .body{padding:18px;display:flex;align-items:center;justify-content:center;min-height:64px;}
-.hero-card .body img{max-width:65%;max-height:38px;opacity:0.9;}
-.hc1{top:5%;left:2%;--r:-9deg;transform:rotate(var(--r));animation-delay:.1s,.1s;}
-.hc2{top:2%;right:0;--r:7deg;transform:rotate(var(--r));animation-delay:.3s,.3s;}
-.hc3{bottom:6%;left:6%;--r:6deg;transform:rotate(var(--r));animation-delay:.5s,.5s;width:155px;}
-.hc4{bottom:2%;right:5%;--r:-6deg;transform:rotate(var(--r));animation-delay:.7s,.7s;width:160px;}
-@keyframes cardIn{from{opacity:0;transform:translateY(20px) rotate(var(--r,0deg));}to{opacity:.85;transform:translateY(0) rotate(var(--r,0deg));}}
-@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg));}50%{transform:translateY(-14px) rotate(var(--r,0deg));}}
+.hero-visuals{position:absolute;inset:0;z-index:1;pointer-events:none;display:flex;align-items:center;justify-content:flex-end;padding-right:clamp(20px,6vw,100px);}
+.hero-logo-float{width:clamp(140px,18vw,260px);height:auto;opacity:0;animation:logoIn 1.1s ease .3s forwards, logoFloat 8s ease-in-out infinite 1.4s;filter:drop-shadow(0 30px 60px rgba(224,24,138,0.25));}
+@keyframes logoIn{from{opacity:0;transform:translateY(24px) scale(.92);}to{opacity:.92;transform:translateY(0) scale(1);}}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-18px) rotate(3deg);}}
 @media(max-width:980px){.hero-visuals{display:none;}}
 
 /* ===== MARQUEE ===== */
@@ -165,7 +154,8 @@ p,li{text-wrap:pretty;}
 
 /* ===== STATEMENT ===== */
 #statement{padding:clamp(30px,6vw,90px) 0;}
-.stmt{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1.05;font-size:clamp(1.8rem,5.4vw,4.6rem);max-width:20ch;}
+.stmt{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1.15;font-size:clamp(1.8rem,5.4vw,4.6rem);max-width:26ch;}
+.stmt span.ln2{display:block;}
 .stmt .it{text-transform:none;}
 .stmt .w{color:var(--faint);}
 
@@ -270,12 +260,25 @@ p,li{text-wrap:pretty;}
 .faq-a p{padding:0 40px 24px 0;font-size:0.98rem;line-height:1.7;color:var(--soft);max-width:64ch;}
 
 /* ===== FINAL ===== */
-#final{background:var(--bg2);padding:clamp(90px,14vw,180px) 0;text-align:center;overflow:hidden;}
-#final .kick{justify-content:center;}
-.final-h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-0.035em;line-height:0.9;font-size:var(--fs-mega);}
+#final{background:var(--bg2);padding:clamp(90px,14vw,180px) 0;text-align:center;overflow:hidden;position:relative;}
+#final::before{content:'';position:absolute;left:50%;top:50%;width:120vw;height:120vw;max-width:1400px;max-height:1400px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(224,24,138,0.14),transparent 60%);animation:finalGlow 10s ease-in-out infinite;pointer-events:none;}
+@keyframes finalGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1);}50%{opacity:.9;transform:translate(-50%,-50%) scale(1.12);}}
+#final .kick{justify-content:center;position:relative;z-index:1;}
+.final-h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-0.035em;line-height:0.9;font-size:var(--fs-mega);position:relative;z-index:1;}
+.final-h2 .ln{display:block;overflow:hidden;padding-top:0.2em;margin-top:-0.2em;}
+.final-h2 .ln>span{display:inline-block;transform:translateY(110%);transition:transform .9s cubic-bezier(.16,1,.3,1);}
+.final-h2.in .ln:nth-child(1)>span{transition-delay:.05s;}
+.final-h2.in .ln:nth-child(2)>span{transition-delay:.18s;}
+.final-h2.in .ln:nth-child(3)>span{transition-delay:.31s;}
+.final-h2.in .ln>span{transform:translateY(0);}
 .final-h2 .it{text-transform:none;font-size:1.05em;}
-.final-body{font-size:1.05rem;line-height:1.6;color:var(--soft);margin:clamp(24px,3.4vw,40px) auto;max-width:42ch;}
-.final-fine{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:20px;}
+.final-body{font-size:1.05rem;line-height:1.6;color:var(--soft);margin:clamp(24px,3.4vw,40px) auto;max-width:42ch;position:relative;z-index:1;}
+.final-actions{position:relative;z-index:1;}
+.final-actions .btn{position:relative;}
+.final-actions .btn::after{content:'';position:absolute;inset:-6px;border-radius:999px;border:1px solid rgba(224,24,138,0.5);opacity:0;transition:opacity .5s ease;pointer-events:none;}
+.final-actions.in .btn::after{opacity:1;animation:finalRing 2.4s ease-out infinite;}
+@keyframes finalRing{0%{transform:scale(1);opacity:.7;}100%{transform:scale(1.18);opacity:0;}}
+.final-fine{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:20px;position:relative;z-index:1;}
 
 /* ===== FOOTER ===== */
 footer{padding:64px var(--pad) 32px;text-align:center;}
@@ -342,7 +345,10 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
     <a href="#offer">Serviços</a>
     <a href="#faq">FAQ</a>
   </div>
-  <a href="#final" data-wa class="nav-cta"><span class="dt"></span> Solicitar orçamento</a>
+  <a href="#final" data-wa class="btn nav-btn magnetic">
+    <span>Solicitar meu site</span>
+    <span class="ar"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+  </a>
 </nav>
 
 <main>
@@ -350,30 +356,16 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
 <!-- HERO -->
 <section id="hero">
   <div class="hero-visuals" aria-hidden="true">
-    <div class="hero-card hc1"><div class="bar"><span></span><span></span><span></span></div><div class="body"><img src="logo.png" alt=""></div></div>
-    <div class="hero-card hc2"><div class="bar"><span></span><span></span><span></span></div><div class="body"><img src="logo.png" alt=""></div></div>
-    <div class="hero-card hc3"><div class="bar"><span></span><span></span><span></span></div><div class="body"><img src="logo.png" alt=""></div></div>
-    <div class="hero-card hc4"><div class="bar"><span></span><span></span><span></span></div><div class="body"><img src="logo.png" alt=""></div></div>
-  </div>
-  <div class="hero-top">
-    <span class="hero-tag label"><span class="dt"></span> Entrega rápida · Sem template</span>
+    <img src="logo.png" alt="" class="hero-logo-float">
   </div>
   <div id="hero-inner">
     <h1 class="hero-h1">
-      <span class="ln"><span>Sites que</span></span>
-      <span class="ln"><span class="it">fecham</span></span>
-      <span class="ln"><span>cliente.</span></span>
+      <span class="ln"><span>Sites que <span class="it">vendem.</span></span></span>
     </h1>
     <div class="hero-foot">
-      <p class="hero-sub">Pra quem já vende pelo Instagram e quer um site que <b>fecha o cliente 24 horas por dia</b>. Do briefing ao ar, sem template.</p>
-      <div class="hero-actions">
-        <a href="#final" data-wa class="btn magnetic">
-          <span>Solicitar meu site</span>
-          <span class="ar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </a>
-      </div>
+      <p class="hero-sub">Pra quem já vende pelo Instagram e quer um site que <b>fecha o cliente 24 horas por dia</b>. Do briefing ao ar, do jeito certo.</p>
       <a class="badge magnetic" href="#final" data-wa aria-label="Solicitar orçamento">
-        <svg viewBox="0 0 100 100"><defs><path id="bp" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs><text><textPath href="#bp">SOLICITAR ORÇAMENTO · SEM TEMPLATE · ENTREGA RÁPIDA · </textPath></text></svg>
+        <svg viewBox="0 0 100 100"><defs><path id="bp" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs><text><textPath href="#bp">SOLICITAR ORÇAMENTO AGORA · SOLICITAR ORÇAMENTO AGORA · </textPath></text></svg>
         <span class="bc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
       </a>
     </div>
@@ -386,7 +378,7 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
     <span class="mq-it">Sites que convertem <span class="st"></span></span>
     <span class="mq-it ot">Entrega rápida <span class="st"></span></span>
     <span class="mq-it">Design <span class="it">exclusivo</span> <span class="st"></span></span>
-    <span class="mq-it ot">Sem template <span class="st"></span></span>
+    <span class="mq-it ot">Feito sob medida <span class="st"></span></span>
     <span class="mq-it">Garantia total <span class="st"></span></span>
     <span class="mq-it ot">Mikla<span class="it">*</span> <span class="st"></span></span>
     <span class="mq-it">Orçamento sob medida <span class="st"></span></span>
@@ -394,7 +386,7 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
     <span class="mq-it">Sites que convertem <span class="st"></span></span>
     <span class="mq-it ot">Entrega rápida <span class="st"></span></span>
     <span class="mq-it">Design <span class="it">exclusivo</span> <span class="st"></span></span>
-    <span class="mq-it ot">Sem template <span class="st"></span></span>
+    <span class="mq-it ot">Feito sob medida <span class="st"></span></span>
     <span class="mq-it">Garantia total <span class="st"></span></span>
     <span class="mq-it ot">Mikla<span class="it">*</span> <span class="st"></span></span>
     <span class="mq-it">Orçamento sob medida <span class="st"></span></span>
@@ -421,7 +413,7 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
 <!-- STATEMENT -->
 <section id="statement">
   <div class="wrap">
-    <p class="stmt reveal">O Instagram <span class="w">atrai.</span> O site <span class="it">fecha.</span> <span class="w">Você precisa dos dois.</span></p>
+    <p class="stmt reveal"><span class="ln2 w">O Instagram atrai.</span><span class="ln2 it">O site fecha.</span><span class="ln2 w">Você precisa dos dois.</span></p>
   </div>
 </section>
 
@@ -464,7 +456,7 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
     </div>
     <div class="panel">
       <div class="panel-top"><span class="panel-num">02</span><span class="panel-day">Dias 2-3<br>Design</span></div>
-      <div class="panel-body"><h3>Design</h3><p>Layout exclusivo em cima da sua identidade — nada de template genérico reaproveitado.</p></div>
+      <div class="panel-body"><h3>Design</h3><p>Layout exclusivo, criado em cima da sua identidade visual, sem nada genérico reaproveitado.</p></div>
     </div>
     <div class="panel">
       <div class="panel-top"><span class="panel-num">03</span><span class="panel-day">Dia 4<br>Aprovação</span></div>
@@ -483,19 +475,24 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
   <div class="wrap">
     <div class="offer-head">
       <h2 class="offer-h2 disp">O que você<br><span class="it">recebe.</span></h2>
-      <p class="offer-sub reveal">Um site que apresenta seu trabalho, responde dúvidas e fecha clientes — <b>sem template</b>, do zero, com acompanhamento contínuo.</p>
+      <p class="offer-sub reveal">Um site que apresenta seu trabalho, responde dúvidas e fecha clientes. Feito do zero, com acompanhamento contínuo.</p>
     </div>
     <div class="stack">
       <div class="scard reveal">
         <div class="scard-top"><span class="scard-label">O que inclui</span><span class="scard-idx">01/03</span></div>
-        <h3>Tudo pra <span class="it">converter,</span> nada pela metade.</h3>
+        <h3>Tudo o que está incluso no <span class="it">acompanhamento.</span></h3>
         <ul class="scard-ul">
-          <li>Design exclusivo com sua identidade</li>
-          <li>Otimizado para celular (maioria do público vem do Instagram)</li>
-          <li>Botão de WhatsApp em todo o site</li>
-          <li>Link pronto pra colar na bio</li>
-          <li>Rodadas de ajuste incluídas</li>
-          <li>Domínio, publicação e suporte contínuo</li>
+          <li>Desenvolvimento do site personalizado</li>
+          <li>Design alinhado à identidade da marca</li>
+          <li>Publicação e configuração completa do projeto</li>
+          <li>Ajustes iniciais para entrega</li>
+          <li>Hospedagem do site</li>
+          <li>Manutenção contínua</li>
+          <li>Suporte técnico</li>
+          <li>Atualizações sempre que necessário</li>
+          <li>Correções e melhorias durante a vigência do plano</li>
+          <li>Segurança e monitoramento do site</li>
+          <li>Plano mensal de pagamento</li>
         </ul>
       </div>
       <div class="scard reveal">
@@ -503,14 +500,14 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
         <h3>Do briefing ao site no <span class="it">ar.</span></h3>
         <ul class="scard-ul one">
           <li><b>Briefing:</b> entendemos seu negócio e seu público.</li>
-          <li><b>Design:</b> layout exclusivo, sem template genérico.</li>
+          <li><b>Design:</b> layout exclusivo, feito para o seu negócio.</li>
           <li><b>Aprovação e no ar:</b> você revisa, ajustamos e publicamos com domínio próprio.</li>
         </ul>
       </div>
       <div class="scard dark reveal">
         <div class="scard-top"><span class="scard-label">Orçamento</span><span class="scard-idx">03/03</span></div>
         <h3>Sob medida pro seu negócio.</h3>
-        <p>Cada negócio tem uma necessidade diferente — por isso o orçamento é sempre personalizado. Fale com a gente no WhatsApp e recebe uma proposta sob medida, sem compromisso.</p>
+        <p>Cada negócio tem uma necessidade diferente, por isso o orçamento é sempre personalizado. Fale com a gente no WhatsApp e recebe uma proposta sob medida, sem compromisso.</p>
         <a href="#final" data-wa class="btn magnetic" style="background:#fff;color:var(--navy);">
           <span style="color:var(--navy);">Solicitar orçamento personalizado</span>
           <span class="ar" style="background:var(--navy);color:#fff;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
@@ -553,24 +550,24 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
         <div class="faq-a"><p>Precisa, sim. O Instagram atrai atenção, mas quem decide fechar quer ver prova, informação clara e um lugar que não desapareça se o algoritmo mudar. O site é onde a decisão acontece.</p></div>
       </div>
       <div class="faq-item" data-cat="geral">
-        <button class="faq-q"><span class="qt">Vocês fazem do zero ou usam template pronto?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>Do zero, sempre. Cada site é desenhado em cima do seu negócio — é isso que separa um site que converte de um que só existe.</p></div>
+        <button class="faq-q"><span class="qt">Vocês fazem o site do zero ou reaproveitam alguma base pronta?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Do zero, sempre. Cada site é desenhado em cima do seu negócio, e é isso que separa um site que converte de um que só existe.</p></div>
       </div>
       <div class="faq-item hidden" data-cat="processo">
         <button class="faq-q"><span class="qt">Preciso ter domínio e hospedagem antes?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>Não. Cuidamos de tudo isso pra você — domínio, publicação e hospedagem entram no processo, sem você precisar entender nada disso antes.</p></div>
+        <div class="faq-a"><p>Não. Cuidamos de tudo isso pra você. Domínio, publicação e hospedagem entram no processo, sem você precisar entender nada disso antes.</p></div>
       </div>
       <div class="faq-item hidden" data-cat="processo">
         <button class="faq-q"><span class="qt">Preciso entender de tecnologia pra manter o site?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>Não. Você só usa o site — qualquer atualização ou ajuste técnico é com a gente.</p></div>
+        <div class="faq-a"><p>Não. Você só usa o site. Qualquer atualização ou ajuste técnico é com a gente.</p></div>
       </div>
       <div class="faq-item hidden" data-cat="processo">
         <button class="faq-q"><span class="qt">Posso pedir alterações depois que o site estiver no ar?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>Sim. O acompanhamento contínuo existe justamente pra isso — seu negócio muda, o site acompanha.</p></div>
+        <div class="faq-a"><p>Sim. O acompanhamento contínuo existe justamente pra isso. Seu negócio muda, e o site acompanha.</p></div>
       </div>
       <div class="faq-item hidden" data-cat="pagamento">
         <button class="faq-q"><span class="qt">Como funciona o pagamento?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>É simples e combinado com você no orçamento, sem burocracia — a gente te explica tudo direto no WhatsApp, sob medida pro seu caso.</p></div>
+        <div class="faq-a"><p>É simples e combinado com você no orçamento, sem burocracia. A gente te explica tudo direto no WhatsApp, sob medida pro seu caso.</p></div>
       </div>
     </div>
   </div>
@@ -684,6 +681,17 @@ html.failsafe body{overflow:auto !important;height:auto !important;}
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: .12 });
   revealEls.forEach(function(el){ io.observe(el); });
+
+  /* ---------- Final section reveal ---------- */
+  var finalH2 = document.querySelector('.final-h2');
+  var finalActions = document.querySelector('.final-actions');
+  var ioFinal = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); ioFinal.unobserve(e.target); }
+    });
+  }, { threshold: .35 });
+  if(finalH2) ioFinal.observe(finalH2);
+  if(finalActions) ioFinal.observe(finalActions);
 
   /* ---------- Portfolio vertical accordion ---------- */
   var vrows = document.querySelectorAll('[data-vrow]');
