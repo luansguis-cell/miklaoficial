@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mikla | Soluções Digitais — Presença digital que fecha cliente</title>
+<meta name="description" content="Sites, redes sociais, catálogos e ferramentas digitais para MEIs, autônomos e pequenos negócios. Sem template. Sem enrolação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07060d;
+    --bg-alt:#0c0b16;
+    --navy:#0D1B6E;
+    --navy-light:#2436c9;
+    --magenta:#E0188A;
+    --magenta-soft:#ff5cb8;
+    --white:#f6f5fb;
+    --muted:#9490ac;
+    --line: rgba(246,245,251,0.09);
+    --grad: linear-gradient(120deg, var(--navy) 0%, var(--magenta) 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--magenta);color:#fff;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+  }
+
+  /* ambient background blobs */
+  .blob{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.35;
+    z-index:0;
+    pointer-events:none;
+  }
+  .blob-1{width:520px;height:520px;background:var(--navy);top:-160px;left:-140px;}
+  .blob-2{width:460px;height:460px;background:var(--magenta);bottom:-180px;right:-140px;}
+  .blob-3{width:380px;height:380px;background:var(--navy-light);top:40%;left:50%;opacity:0.15;}
+
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+
+  /* NAV */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter:blur(14px);
+    background:rgba(7,6,13,0.55);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1160px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-weight:700;font-size:1.3rem;letter-spacing:-0.02em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo-img{height:34px;width:auto;display:block;}
+  .footer-logo-img{height:auto;width:min(60vw,320px);margin:0 auto 36px;}
+  .footer-contact{display:flex;justify-content:center;gap:28px;margin-bottom:40px;flex-wrap:wrap;}
+  .footer-contact a{
+    display:flex;align-items:center;justify-content:center;
+    width:48px;height:48px;border-radius:50%;
+    border:1px solid var(--line);color:var(--muted);
+    transition:border-color .25s, color .25s, transform .25s;
+  }
+  .footer-contact a:hover{border-color:var(--magenta-soft);color:var(--white);transform:translateY(-3px);}
+  .footer-contact svg{width:20px;height:20px;}
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{font-size:0.92rem;color:var(--muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--white);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:100px;
+    font-weight:600;font-size:0.92rem;
+    background:var(--grad);color:#fff;
+    border:none;cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(224,24,138,0.55);}
+  .btn-ghost{
+    background:transparent;border:1px solid var(--line);color:var(--white);
+  }
+  .btn-ghost:hover{border-color:var(--magenta-soft);transform:translateY(-2px);box-shadow:none;}
+  .nav-cta{display:none;}
+  @media(min-width:860px){.nav-cta{display:inline-flex;} .nav-links{display:flex;}}
+  @media(max-width:859px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:140px 0 80px;
+    position:relative;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:7px 16px;border-radius:100px;
+    border:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;letter-spacing:0.03em;
+    color:var(--muted);
+    margin-bottom:28px;
+    opacity:0;animation:rise .7s ease forwards;
+  }
+  .badge .pulse{width:6px;height:6px;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 rgba(224,24,138,0.5);animation:pulse 2s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(224,24,138,0.5);}
+    70%{box-shadow:0 0 0 8px rgba(224,24,138,0);}
+    100%{box-shadow:0 0 0 0 rgba(224,24,138,0);}
+  }
+  h1.hero-title{
+    font-size:clamp(2.4rem,6.4vw,4.6rem);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.03em;
+    max-width:820px;
+    opacity:0;animation:rise .8s ease .1s forwards;
+  }
+  .hero-title .swap-wrap{
+    display:inline-block;
+    background:var(--grad);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    min-width:1ch;
+  }
+  .hero-sub{
+    margin-top:26px;
+    font-size:clamp(1.05rem,2vw,1.25rem);
+    color:var(--muted);
+    max-width:600px;
+    line-height:1.6;
+    opacity:0;animation:rise .8s ease .25s forwards;
+  }
+  .hero-ctas{
+    margin-top:40px;
+    display:flex;gap:16px;flex-wrap:wrap;
+    opacity:0;animation:rise .8s ease .4s forwards;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+
+  /* HERO floating UI cards */
+  .hero-content{position:relative;z-index:2;}
+  .hero-visuals{position:absolute;inset:0;z-index:1;pointer-events:none;}
+  .hero-card{
+    position:absolute;width:190px;
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    background:#0d0c18;
+    box-shadow:0 30px 70px -25px rgba(0,0,0,0.65);
+    opacity:0;
+    animation:cardIn .9s ease forwards, floaty 7s ease-in-out infinite;
+  }
+  .hero-card .browser-bar{padding:8px 10px;}
+  .hero-card .browser-dots span{width:5px;height:5px;}
+  .hero-card .browser-url{font-size:0.6rem;padding:4px 8px;}
+  .hero-card-body{padding:20px 14px;display:flex;align-items:center;justify-content:center;min-height:70px;}
+  .hero-card-body img{max-width:70%;max-height:44px;object-fit:contain;opacity:0.92;}
+  .hc1{top:6%;left:2%;--r:-9deg;transform:rotate(var(--r));animation-delay:.1s, .1s;}
+  .hc2{top:2%;right:0%;--r:7deg;transform:rotate(var(--r));animation-delay:.3s, .3s;width:170px;}
+  .hc3{bottom:8%;left:8%;--r:6deg;transform:rotate(var(--r));animation-delay:.5s, .5s;width:165px;}
+  .hc4{bottom:2%;right:6%;--r:-6deg;transform:rotate(var(--r));animation-delay:.7s, .7s;width:180px;}
+  @keyframes cardIn{from{opacity:0;transform:translateY(20px) rotate(var(--r,0deg));}to{opacity:0.9;transform:translateY(0) rotate(var(--r,0deg));}}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg));}50%{transform:translateY(-14px) rotate(var(--r,0deg));}}
+  @media(max-width:980px){.hero-visuals{display:none;}}
+
+  /* PORTFÓLIO → marquee de depoimentos */
+  .marquee-outer{
+    width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
+  }
+  .marquee-track{display:flex;gap:20px;width:max-content;animation:marquee 42s linear infinite;padding:4px 0;}
+  .marquee-outer:hover .marquee-track{animation-play-state:paused;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .gallery-tile{
+    width:300px;height:200px;flex-shrink:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    background:#0d0c18;
+  }
+  .gallery-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+  @media(max-width:520px){.gallery-tile{width:220px;height:150px;}}
+  .marquee-cta{text-align:center;margin-top:48px;font-size:1.15rem;font-family:'Space Grotesk',sans-serif;color:var(--muted);}
+  .marquee-cta strong{color:var(--white);}
+  .marquee-cta a{color:var(--magenta-soft);border-bottom:1px solid rgba(224,24,138,0.4);}
+
+  /* FAQ tabs */
+  .faq-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+  .faq-tab{
+    font-family:'JetBrains Mono',monospace;font-size:0.8rem;
+    padding:9px 18px;border-radius:100px;border:1px solid var(--line);
+    background:transparent;color:var(--muted);cursor:pointer;transition:all .25s ease;
+  }
+  .faq-tab:hover{border-color:var(--magenta-soft);color:var(--white);}
+  .faq-tab.active{background:var(--grad);color:#fff;border-color:transparent;}
+  .faq-item{display:block;}
+  .faq-item.hidden{display:none;}
+
+  /* RODAPÉ */
+  .footer-bottom{text-align:center;border-top:1px solid var(--line);padding-top:24px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+
+  /* SECTION generic */
+  section{position:relative;padding:110px 0;z-index:1;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+    color:var(--magenta-soft);letter-spacing:0.08em;text-transform:uppercase;
+    margin-bottom:14px;display:block;
+  }
+  .section-title{
+    font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-0.02em;
+    max-width:640px;margin-bottom:16px;
+  }
+  .section-sub{color:var(--muted);max-width:560px;font-size:1.05rem;line-height:1.6;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* DOR — address bar signature element */
+  .dor-header{margin-bottom:56px;}
+  .compare{
+    display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:64px;
+  }
+  @media(min-width:760px){.compare{grid-template-columns:1fr auto 1fr;align-items:center;}}
+  .browser{
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    background:#0d0c18;
+  }
+  .browser-bar{
+    display:flex;align-items:center;gap:10px;padding:12px 16px;
+    background:#111022;border-bottom:1px solid var(--line);
+  }
+  .browser-dots{display:flex;gap:6px;}
+  .browser-dots span{width:8px;height:8px;border-radius:50%;background:#33324a;}
+  .browser-url{
+    flex:1;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);
+    background:#0a0914;padding:6px 12px;border-radius:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .browser-body{padding:28px 20px;text-align:center;}
+  .browser-tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+    padding:4px 12px;border-radius:100px;margin-bottom:14px;letter-spacing:0.04em;
+  }
+  .tag-rented{background:rgba(148,144,172,0.15);color:var(--muted);border:1px solid var(--line);}
+  .tag-owned{background:rgba(224,24,138,0.15);color:var(--magenta-soft);border:1px solid rgba(224,24,138,0.4);}
+  .browser-body p{color:var(--muted);font-size:0.9rem;line-height:1.5;}
+  .browser-body strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;margin-bottom:8px;color:var(--white);}
+  .vs{
+    font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:0.85rem;
+    text-align:center;
+  }
+
+  .pain-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  @media(min-width:760px){.pain-grid{grid-template-columns:1fr 1fr;}}
+  .pain-card{background:var(--bg);padding:36px 32px;}
+  .pain-num{font-family:'JetBrains Mono',monospace;color:var(--magenta-soft);font-size:0.85rem;margin-bottom:14px;display:block;}
+  .pain-card h3{font-size:1.15rem;font-weight:600;margin-bottom:10px;letter-spacing:-0.01em;}
+  .pain-card p{color:var(--muted);font-size:0.95rem;line-height:1.6;}
+
+
+  /* PROCESS */
+  .process-list{display:flex;flex-direction:column;}
+  .process-item{
+    display:grid;grid-template-columns:70px 1fr;gap:24px;
+    padding:32px 0;border-top:1px solid var(--line);
+  }
+  .process-item:last-child{border-bottom:1px solid var(--line);}
+  .process-step{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--magenta-soft);}
+  .process-item h3{font-size:1.2rem;font-weight:600;margin-bottom:8px;}
+  .process-item p{color:var(--muted);line-height:1.6;font-size:0.98rem;max-width:520px;}
+
+  /* DELIVERABLES */
+  .deliver-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  @media(min-width:700px){.deliver-grid{grid-template-columns:1fr 1fr;}}
+  .deliver-item{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:20px;border:1px solid var(--line);border-radius:14px;
+  }
+  .deliver-icon{
+    width:26px;height:26px;border-radius:50%;background:var(--grad);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-size:0.75rem;color:#fff;font-weight:700;margin-top:2px;
+  }
+  .deliver-item p{color:var(--white);font-size:0.98rem;line-height:1.5;}
+  .deliver-cta{margin-top:44px;text-align:center;}
+
+  /* GUARANTEE */
+  .guarantee{
+    border:1px solid rgba(224,24,138,0.3);
+    border-radius:20px;
+    padding:56px 40px;
+    text-align:center;
+    background:radial-gradient(circle at 50% 0%, rgba(224,24,138,0.08), transparent 70%);
+  }
+  .guarantee h2{font-size:clamp(1.6rem,3.6vw,2.2rem);margin-bottom:18px;max-width:640px;margin-left:auto;margin-right:auto;}
+  .guarantee p{color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;color:var(--white);
+    padding:24px 0;font-size:1.05rem;font-weight:600;font-family:'Space Grotesk',sans-serif;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px;
+  }
+  .faq-plus{font-size:1.4rem;color:var(--magenta-soft);transition:transform .3s;flex-shrink:0;}
+  .faq-item.open .faq-plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a p{color:var(--muted);line-height:1.7;padding-bottom:24px;max-width:640px;}
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center;padding:100px 0;
+  }
+  .final-cta h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:24px;letter-spacing:-0.02em;}
+  .final-cta .section-sub{margin:0 auto 40px;}
+
+  footer{
+    border-top:1px solid var(--line);padding:40px 0;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<header>
+  <nav>
+    <a class="logo" href="#"><img src="logo.png" alt="Mikla" class="logo-img"></a>
+    <div class="nav-links">
+      <a href="#trabalhos">Portfólio</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#entregaveis">Serviços</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn nav-cta" href="https://wa.me/5544988223821?text=Ol%C3%A1%2C%20vi%20o%20site%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener">Solicitar orçamento</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-visuals" aria-hidden="true">
+      <div class="hero-card hc1">
+        <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">seunegocio.com.br</div></div>
+        <div class="hero-card-body"><img src="logo.png" alt=""></div>
+      </div>
+      <div class="hero-card hc2">
+        <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">catálogo</div></div>
+        <div class="hero-card-body"><img src="logo.png" alt=""></div>
+      </div>
+      <div class="hero-card hc3">
+        <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">Mikla Finanças</div></div>
+        <div class="hero-card-body"><img src="logo.png" alt=""></div>
+      </div>
+      <div class="hero-card hc4">
+        <div class="browser-bar"><div class="browser-dots"><span></span><span></span><span></span></div><div class="browser-url">@seu.negocio</div></div>
+        <div class="hero-card-body"><img src="logo.png" alt=""></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <span class="badge"><span class="pulse"></span>ENTREGA RÁPIDA · SEM TEMPLATE</span>
+      <h1 class="hero-title">Presença digital que fecha cliente,<br> não só que aparece pra <span class="swap-wrap" id="swapWord">vender mais</span></h1>
+      <p class="hero-sub">Seu Instagram atrai olhar. Mas quem decide fechar precisa de prova, de preço claro e de um lugar pra confiar. É isso que a Mikla constrói pra você.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="https://wa.me/5544988223821?text=Ol%C3%A1%2C%20vi%20o%20site%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener">Solicitar meu site</a>
+        <a class="btn btn-ghost" href="#trabalhos">Ver portfólio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOR -->
+  <section id="dor">
+    <div class="dor-header reveal">
+      <span class="eyebrow">O problema agora</span>
+      <h2 class="section-title">Você está perdendo cliente enquanto isso.</h2>
+      <p class="section-sub">O post viraliza, o perfil recebe curtida — e mesmo assim ninguém fecha. O motivo não é falta de talento. É falta de um lugar que prove o seu valor.</p>
+    </div>
+
+    <div class="compare reveal">
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">instagram.com/seu.negocio</div>
+        </div>
+        <div class="browser-body">
+          <span class="browser-tag tag-rented">ALUGADO</span>
+          <strong>O algoritmo decide quem vê</strong>
+          <p>Regra muda sem aviso, alcance some, seu perfil pode ser derrubado — e o trabalho de meses vai junto.</p>
+        </div>
+      </div>
+      <div class="vs">→</div>
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">seunegocio.com.br</div>
+        </div>
+        <div class="browser-body">
+          <span class="browser-tag tag-owned">SEU</span>
+          <strong>Você decide o que acontece nele</strong>
+          <p>No ar 24h, sem depender de algoritmo, com endereço fixo que você pode divulgar em qualquer canal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <span class="pain-num">01</span>
+        <h3>O cliente gosta, mas esfria</h3>
+        <p>Ele vê o post, curte, mas não acha preço, prova ou um link claro pra seguir — e a decisão morre ali.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-num">02</span>
+        <h3>Perfil bonito não é credibilidade</h3>
+        <p>Sem um site próprio, qualquer perfil parece amador aos olhos de quem está decidindo gastar dinheiro.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-num">03</span>
+        <h3>Instagram é alugado</h3>
+        <p>Você não é dono do algoritmo, do alcance nem da plataforma. Seu site é território seu, sem intermediário.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-num">04</span>
+        <h3>Você atende um por vez</h3>
+        <p>Enquanto você responde DM por DM, um site bem feito atende dezenas de pessoas ao mesmo tempo, sozinho.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="trabalhos">
+    <div class="reveal" style="margin-bottom:48px;">
+      <span class="eyebrow">Prova, não promessa</span>
+      <h2 class="section-title">Sites que já colocamos no ar.</h2>
+      <p class="section-sub">Uma prévia dos projetos entregues pela Mikla — passe o mouse pra pausar.</p>
+    </div>
+  </section>
+  <!-- Substitua site1.jpg…site6.jpg pelas capturas de tela reais de cada site entregue -->
+  <div class="marquee-outer reveal">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="gallery-tile"><img src="site1.jpg" alt=""></div>
+      <div class="gallery-tile"><img src="site2.jpg" alt=""></div>
+      <div class="gallery-tile"><img src="site3.jpg" alt=""></div>
+      <div class="gallery-tile"><img src="site4.jpg" alt=""></div>
+      <div class="gallery-tile"><img src="site5.jpg" alt=""></div>
+      <div class="gallery-tile"><img src="site6.jpg" alt=""></div>
+      <!-- duplicata para loop contínuo -->
+      <div class="gallery-tile" aria-hidden="true"><img src="site1.jpg" alt=""></div>
+      <div class="gallery-tile" aria-hidden="true"><img src="site2.jpg" alt=""></div>
+      <div class="gallery-tile" aria-hidden="true"><img src="site3.jpg" alt=""></div>
+      <div class="gallery-tile" aria-hidden="true"><img src="site4.jpg" alt=""></div>
+      <div class="gallery-tile" aria-hidden="true"><img src="site5.jpg" alt=""></div>
+      <div class="gallery-tile" aria-hidden="true"><img src="site6.jpg" alt=""></div>
+    </div>
+  </div>
+  <p class="marquee-cta reveal">Quer que o <strong>site do seu negócio</strong> apareça aqui também? <a href="https://wa.me/5544988223821?text=Ol%C3%A1%2C%20vi%20o%20site%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener">Fale com a gente</a>.</p>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona">
+    <div class="reveal" style="margin-bottom:24px;">
+      <span class="eyebrow">Como funciona</span>
+      <h2 class="section-title">Do briefing ao ar, sem enrolação.</h2>
+    </div>
+    <div class="process-list reveal">
+      <div class="process-item">
+        <span class="process-step">01</span>
+        <div><h3>Briefing</h3><p>Entendemos seu negócio, seu público e o que precisa aparecer pra gerar confiança e conversão.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="process-step">02</span>
+        <div><h3>Design</h3><p>Criamos o layout exclusivo em cima da sua identidade — nada de template genérico reaproveitado.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="process-step">03</span>
+        <div><h3>Aprovação</h3><p>Você revisa, pede ajustes e a gente refina até o resultado representar seu negócio de verdade.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="process-step">04</span>
+        <div><h3>No ar</h3><p>Publicamos com domínio próprio, botão de WhatsApp e link pronto pra colar na bio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTREGÁVEIS -->
+  <section id="entregaveis">
+    <div class="reveal" style="margin-bottom:40px;">
+      <span class="eyebrow">O que você recebe</span>
+      <h2 class="section-title">Tudo pronto pra converter, nada pela metade.</h2>
+    </div>
+    <div class="deliver-grid reveal">
+      <div class="deliver-item"><span class="deliver-icon">✓</span><p>Design exclusivo, feito para o seu negócio — não é template ajustado</p></div>
+      <div class="deliver-item"><span class="deliver-icon">✓</span><p>100% otimizado para celular, de onde vem a maior parte do seu público</p></div>
+      <div class="deliver-item"><span class="deliver-icon">✓</span><p>Botão de WhatsApp direto em todo o site, sem fricção pro cliente falar com você</p></div>
+      <div class="deliver-item"><span class="deliver-icon">✓</span><p>Link pronto pra colar na bio do Instagram e usar em qualquer divulgação</p></div>
+      <div class="deliver-item"><span class="deliver-icon">✓</span><p>Rodadas de ajuste incluídas até o site ficar do jeito certo</p></div>
+      <div class="deliver-item"><span class="deliver-icon">✓</span><p>Domínio, publicação e suporte contínuo, sem você precisar mexer em nada técnico</p></div>
+    </div>
+    <div class="deliver-cta reveal">
+      <a class="btn" href="https://wa.me/5544988223821?text=Ol%C3%A1%2C%20vi%20o%20site%20e%20quero%20um%20or%C3%A7amento%20personalizado" target="_blank" rel="noopener">Solicitar orçamento personalizado</a>
+    </div>
+  </section>
+
+  <!-- GARANTIA -->
+  <section id="garantia">
+    <div class="guarantee reveal">
+      <h2>Compromisso com prazo e com qualidade — sem letra miúda.</h2>
+      <p>Trabalhamos com rodadas de ajuste incluídas e acompanhamento contínuo depois da entrega. Se algo não representa seu negócio como deveria, a gente ajusta até representar.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="reveal" style="margin-bottom:32px;">
+      <span class="eyebrow">Perguntas frequentes</span>
+      <h2 class="section-title">Antes de você perguntar.</h2>
+    </div>
+    <div class="faq-tabs reveal">
+      <button class="faq-tab active" data-cat="geral">Geral</button>
+      <button class="faq-tab" data-cat="processo">Processo</button>
+      <button class="faq-tab" data-cat="pagamento">Pagamento</button>
+    </div>
+    <div class="reveal" id="faqList">
+      <div class="faq-item" data-cat="geral">
+        <button class="faq-q">Já tenho Instagram, ainda preciso de site?<span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Precisa, sim. O Instagram atrai atenção, mas quem decide fechar quer ver prova, informação clara e um lugar que não desapareça se o algoritmo mudar. O site é onde a decisão acontece.</p></div>
+      </div>
+      <div class="faq-item" data-cat="geral">
+        <button class="faq-q">Vocês fazem do zero ou usam template pronto?<span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Do zero, sempre. Cada site é desenhado em cima do seu negócio — é isso que separa um site que converte de um que só existe.</p></div>
+      </div>
+      <div class="faq-item" data-cat="processo">
+        <button class="faq-q">Preciso ter domínio e hospedagem antes?<span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Não. Cuidamos de tudo isso pra você — domínio, publicação e hospedagem entram no processo, sem você precisar entender nada disso antes.</p></div>
+      </div>
+      <div class="faq-item" data-cat="processo">
+        <button class="faq-q">Preciso entender de tecnologia pra manter o site?<span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Não. Você só usa o site — qualquer atualização ou ajuste técnico é com a gente.</p></div>
+      </div>
+      <div class="faq-item" data-cat="processo">
+        <button class="faq-q">Posso pedir alterações depois que o site estiver no ar?<span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Sim. O acompanhamento contínuo existe justamente pra isso — seu negócio muda, o site acompanha.</p></div>
+      </div>
+      <div class="faq-item" data-cat="pagamento">
+        <button class="faq-q">Como funciona o pagamento?<span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>É simples e combinado com você no orçamento, sem burocracia — a gente te explica tudo direto no WhatsApp, sob medida pro seu caso.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta">
+    <div class="reveal" style="display:flex;flex-direction:column;align-items:center;">
+      <span class="eyebrow">Chega de perder cliente por falta de site</span>
+      <h2>Bora colocar seu negócio<br>no ar do jeito certo?</h2>
+      <p class="section-sub">Fale agora no WhatsApp e receba um orçamento personalizado pro seu negócio.</p>
+      <a class="btn" href="https://wa.me/5544988223821?text=Ol%C3%A1%2C%20vi%20o%20site%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener">Falar no WhatsApp agora</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="logo.png" alt="Mikla" class="footer-logo-img">
+    <div class="footer-contact">
+      <a href="https://wa.me/5544988223821?text=Ol%C3%A1%2C%20vi%20o%20site%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.1.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C10.2 9 9.7 7.6 9.5 7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      </a>
+      <a href="https://instagram.com/mikla.sites" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      </a>
+      <a href="mailto:miklacreative@gmail.com" aria-label="E-mail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
+    <div class="footer-bottom">© 2026 Mikla | Soluções Digitais</div>
+  </div>
+</footer>
+
+<script>
+  // typewriter swap effect
+  const words = ["vender mais","organizar","automatizar","se destacar"];
+  const el = document.getElementById('swapWord');
+  let wi = 0, ci = 0, deleting = false;
+
+  function tick(){
+    const word = words[wi];
+    if(!deleting){
+      ci++;
+      el.textContent = word.slice(0,ci);
+      if(ci === word.length){
+        deleting = true;
+        setTimeout(tick, 1500);
+        return;
+      }
+    } else {
+      ci--;
+      el.textContent = word.slice(0,ci);
+      if(ci === 0){
+        deleting = false;
+        wi = (wi+1) % words.length;
+      }
+    }
+    setTimeout(tick, deleting ? 40 : 70);
+  }
+  setTimeout(tick, 900);
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  // faq category tabs
+  const faqTabs = document.querySelectorAll('.faq-tab');
+  const faqItems = document.querySelectorAll('.faq-item');
+  function applyFaqFilter(cat){
+    faqItems.forEach(item=>{
+      const match = item.dataset.cat === cat;
+      item.classList.toggle('hidden', !match);
+      if(!match && item.classList.contains('open')){
+        item.classList.remove('open');
+        item.querySelector('.faq-a').style.maxHeight = null;
+      }
+    });
+  }
+  faqTabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      faqTabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      applyFaqFilter(tab.dataset.cat);
+    });
+  });
+  if(faqTabs.length){ applyFaqFilter(faqTabs[0].dataset.cat); }
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o=>{
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
