@@ -4,7 +4,7 @@
 
 ## Quem somos
 
-Mikla é um estúdio de criação de sites focado em pequenos negócios e profissionais autônomos no Brasil. Cada site é desenhado do zero, sem templates genéricos, com identidade visual própria do cliente. Site: [miklaoficial](https://mikla.com.br/).
+Mikla é um estúdio de criação de sites focado em pequenos negócios e profissionais autônomos no Brasil. Cada site é desenhado do zero, sem templates genéricos, com identidade visual própria do cliente. Site: [miklaoficial](https://www.mikla.com.br/).
 
 ## Serviços
 
@@ -30,7 +30,7 @@ Mikla é um estúdio de criação de sites focado em pequenos negócios e profis
 
 ## Perguntas frequentes
 
-- [FAQ completo](https://mikla.com.br/#faq)
+- [FAQ completo](https://www.mikla.com.br/#faq)
 
 ## Optional
 
