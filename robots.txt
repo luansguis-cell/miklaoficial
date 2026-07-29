@@ -1,4 +1,31 @@
 User-agent: *
 Allow: /
 
+# Crawlers de IA (GEO) — permitidos explicitamente para citação/indexação
+# em respostas de assistentes de IA. "User-agent: *" acima já libera tudo;
+# estas linhas só deixam a intenção explícita e documentada.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml
