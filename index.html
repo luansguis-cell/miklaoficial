@@ -107,34 +107,74 @@ gtag('config', 'G-XXXXXXX', { anonymize_ip: true });
     },
     {
       "@type": "Question",
-      "name": "Preciso ter domínio e hospedagem antes?",
+      "name": "O site funciona no celular?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Não. Cuidamos de tudo isso pra você. Domínio, publicação e hospedagem entram no processo, sem você precisar entender nada disso antes."
+        "text": "Sim. Todo site é desenvolvido responsivo, adaptado pra funcionar bem em celular, tablet e computador."
       }
     },
     {
       "@type": "Question",
-      "name": "Preciso entender de tecnologia pra manter o site?",
+      "name": "O site pode ter botão de WhatsApp?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Não. Você só usa o site. Qualquer atualização ou ajuste técnico é com a gente."
+        "text": "Sim, o botão de WhatsApp é padrão nos projetos — é um dos jeitos mais diretos de transformar visita em contato."
       }
     },
     {
       "@type": "Question",
-      "name": "Posso pedir alterações depois que o site estiver no ar?",
+      "name": "Quanto tempo leva para o site ficar pronto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sim. O acompanhamento contínuo existe justamente pra isso. Seu negócio muda, e o site acompanha."
+        "text": "Landing pages ficam prontas em até 48h úteis. Sites maiores ou mais completos têm prazo combinado no briefing, de acordo com a complexidade do projeto."
       }
     },
     {
       "@type": "Question",
-      "name": "Como funciona o pagamento?",
+      "name": "Posso solicitar alterações?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "É simples e combinado com você no orçamento, sem burocracia. A gente te explica tudo direto no WhatsApp, sob medida pro seu caso."
+        "text": "Sim. Você revisa o projeto antes da publicação e pode pedir ajustes. Depois do site no ar, o acompanhamento contínuo permite solicitar novas alterações."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A Mikla faz manutenção depois da entrega?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Manutenção, atualizações e suporte técnico continuam fazendo parte do acompanhamento depois da publicação."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso atualizar o conteúdo futuramente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Sempre que seu negócio mudar — novo serviço, novo texto, nova foto — é só pedir a atualização."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto custa criar um site?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O valor varia de acordo com o tipo de projeto e as necessidades do seu negócio. Por isso o orçamento é sempre personalizado — fale com a gente no WhatsApp e receba uma proposta sob medida, sem compromisso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O domínio está incluso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. A publicação com domínio próprio faz parte do processo — cuidamos disso pra você."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A hospedagem está inclusa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, a hospedagem está inclusa no acompanhamento contínuo do seu site."
       }
     }
   ]
@@ -231,16 +271,32 @@ img{max-width:100%;display:block;}
 p,li{text-wrap:pretty;}
 
 /* ===== NAV ===== */
-#nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:6px var(--pad);background:var(--grad);border-bottom:1px solid rgba(255,255,255,0.12);transition:transform .5s cubic-bezier(.16,1,.3,1);}
+#nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:6px var(--pad);background:var(--grad);border-bottom:1px solid rgba(255,255,255,0.12);transition:transform .5s cubic-bezier(.16,1,.3,1);}
 #nav.up{transform:translateY(-130%);}
 .nav-logo img{height:44px;width:auto;}
-.nav-mid{display:flex;gap:28px;}
-.nav-mid a{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.78);transition:color .25s;}
+.nav-mid{display:flex;gap:24px;flex-wrap:wrap;}
+.nav-mid a{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.78);transition:color .25s;white-space:nowrap;}
 .nav-mid a:hover{color:#fff;}
-.nav-btn{background:rgba(255,255,255,0.16);padding:10px 10px 10px 20px;font-size:0.85rem;gap:10px;}
+.nav-btn{background:rgba(255,255,255,0.16);padding:10px 10px 10px 20px;font-size:0.85rem;gap:10px;flex-shrink:0;}
 .nav-btn .ar{width:28px;height:28px;background:#fff;color:var(--navy);}
 .nav-btn:hover{transform:none;box-shadow:none;background:rgba(255,255,255,0.26);}
-@media(max-width:860px){.nav-mid{display:none;}}
+@media(max-width:1080px){.nav-mid{display:none;}}
+@media(max-width:640px){.nav-btn span:first-child{display:none;}.nav-btn{padding:12px;gap:0;}}
+
+/* ===== HAMBURGER + MOBILE MENU ===== */
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;flex-shrink:0;background:rgba(255,255,255,0.14);border:none;border-radius:50%;cursor:pointer;}
+.hamburger span{display:block;width:16px;height:2px;background:#fff;border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:1080px){.hamburger{display:flex;}}
+
+.mobile-menu{position:fixed;inset:0;z-index:790;background:var(--bg2);display:flex;flex-direction:column;justify-content:center;padding:100px var(--pad) 40px;opacity:0;pointer-events:none;transform:translateY(-12px);transition:opacity .35s ease,transform .35s ease;}
+.mobile-menu.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+.mobile-menu nav{display:flex;flex-direction:column;gap:6px;}
+.mobile-menu nav a{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(1.6rem,7vw,2.4rem);letter-spacing:-0.02em;color:var(--paper);padding:10px 0;border-bottom:1px solid var(--line);}
+.mobile-menu nav a.btn{font-family:var(--body);font-weight:600;font-size:1rem;text-transform:none;justify-content:center;margin-top:24px;border-bottom:none;letter-spacing:normal;}
+body.menu-open{overflow:hidden;}
 
 /* ===== HERO ===== */
 #hero{position:relative;min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;padding:100px var(--pad) clamp(40px,8vh,90px);overflow:hidden;}
@@ -300,19 +356,41 @@ p,li{text-wrap:pretty;}
 .stmt .it{text-transform:none;}
 .stmt .w{color:var(--faint);}
 
-/* ===== WORK / PORTFOLIO ===== */
-#work{padding:var(--gap) 0;}
-.work-head{display:grid;grid-template-columns:1.5fr 1fr;gap:36px;align-items:end;margin-bottom:clamp(40px,6vw,72px);}
+/* ===== SOLUÇÕES ===== */
+#solucoes{padding:var(--gap) 0;}
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.sol-card{border:1px solid var(--line);background:var(--bg2);border-radius:20px;padding:clamp(26px,3vw,36px);transition:border-color .3s,transform .3s;}
+.sol-card:hover{border-color:var(--accent);transform:translateY(-4px);}
+.sol-num{color:var(--accent2);font-size:0.85rem;display:block;margin-bottom:18px;}
+.sol-card h3{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:1.25rem;letter-spacing:-0.01em;margin-bottom:12px;line-height:1.15;}
+.sol-card p{font-size:0.92rem;line-height:1.55;color:var(--soft);}
+.sol-card:nth-child(4),.sol-card:nth-child(5){grid-column:span 1;}
+@media(max-width:920px){.sol-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.sol-grid{grid-template-columns:1fr;}}
+
+/* ===== PROJETOS / PORTFÓLIO ===== */
+#projects{padding:var(--gap) 0;}
+.work-head{display:grid;grid-template-columns:1.5fr 1fr;gap:36px;align-items:end;margin-bottom:clamp(40px,6vw,64px);}
 .work-h2{font-size:var(--fs-xl);text-transform:uppercase;}
 .work-h2 .it{text-transform:none;}
 .work-note{font-size:1rem;line-height:1.6;color:var(--soft);}
 @media(max-width:760px){.work-head{grid-template-columns:1fr;}}
 
-.vgal{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
-.vrow{position:relative;width:100%;height:64px;overflow:hidden;border-radius:16px;cursor:pointer;border:1px solid var(--line);background:var(--bg2);transition:height .55s cubic-bezier(.16,1,.3,1);will-change:height;}
-.vrow.is-active{height:var(--openh,52vh);}
-.vrow img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
-@media(max-width:640px){.vrow{height:52px;border-radius:12px;}.vrow.is-active{height:36vh;}}
+.pf-wrap{position:relative;}
+.pf-track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px var(--pad) 30px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.pf-track::-webkit-scrollbar{display:none;}
+.pf-card{position:relative;flex:0 0 auto;width:min(70vw,620px);scroll-snap-align:start;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--bg2);}
+.pf-card picture{display:block;overflow:hidden;}
+.pf-card img{width:100%;height:auto;aspect-ratio:1200/595;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1);}
+.pf-card:hover img{transform:scale(1.045);}
+.pf-tag{position:absolute;left:18px;bottom:18px;display:flex;flex-direction:column;gap:2px;padding:10px 16px;border-radius:14px;background:rgba(7,6,13,0.72);backdrop-filter:blur(6px);max-width:calc(100% - 36px);}
+.pf-seg{font-family:var(--disp);font-weight:700;font-size:0.95rem;color:#fff;letter-spacing:-0.01em;}
+.pf-type{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--soft);}
+.pf-nav{display:flex;gap:12px;justify-content:flex-end;margin-top:2px;}
+.pf-arrow{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);color:var(--paper);display:grid;place-items:center;cursor:pointer;transition:background .25s,border-color .25s,transform .25s;flex-shrink:0;}
+.pf-arrow:hover{background:var(--grad);border-color:transparent;transform:translateY(-2px);}
+.pf-arrow:disabled{opacity:.3;cursor:default;pointer-events:none;}
+@media(max-width:640px){.pf-card{width:82vw;border-radius:18px;}.pf-tag{left:12px;bottom:12px;padding:8px 12px;}.pf-nav{display:none;}}
 
 .work-cta{margin-top:clamp(44px,6vw,76px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:clamp(26px,3vw,38px);border-top:1px solid var(--line);}
 .work-cta p{font-family:var(--disp);font-weight:500;font-size:clamp(1.1rem,2.2vw,1.8rem);letter-spacing:-0.02em;max-width:24ch;}
@@ -345,10 +423,11 @@ p,li{text-wrap:pretty;}
 .scard{position:sticky;border-radius:20px;padding:clamp(26px,3.4vw,48px);border:1px solid var(--line);background:var(--bg2);}
 .scard:nth-child(1){top:96px;}
 .scard:nth-child(2){top:118px;}
-.scard:nth-child(3){top:140px;background:var(--grad);border-color:transparent;}
+.scard:nth-child(3){top:140px;}
+.scard.dark{background:var(--grad);border-color:transparent;}
 .scard-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px;}
 .scard-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);}
-.scard:nth-child(3) .scard-label{color:rgba(255,255,255,0.85);}
+.scard.dark .scard-label{color:rgba(255,255,255,0.85);}
 .scard-idx{font-family:var(--mono);font-size:0.7rem;color:var(--faint);}
 .scard h3{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(1.4rem,2.8vw,2.3rem);letter-spacing:-0.02em;line-height:1.05;margin-bottom:26px;max-width:20ch;}
 .scard-ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;}
@@ -455,16 +534,33 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
     </picture>
   </a>
   <nav class="nav-mid" aria-label="Navegação principal">
-    <a href="#work">Portfólio</a>
+    <a href="#hero">Início</a>
+    <a href="#solucoes">Soluções</a>
+    <a href="#projects">Projetos</a>
     <a href="#proc">Como funciona</a>
-    <a href="#offer">Serviços</a>
+    <a href="#about">Sobre a Mikla</a>
     <a href="#faq">FAQ</a>
   </nav>
   <a href="#final" data-wa class="btn nav-btn magnetic">
-    <span>Solicitar meu site</span>
+    <span>Solicitar orçamento</span>
     <span class="ar"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
   </a>
+  <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <nav aria-label="Navegação mobile">
+    <a href="#hero" tabindex="-1">Início</a>
+    <a href="#solucoes" tabindex="-1">Soluções</a>
+    <a href="#projects" tabindex="-1">Projetos</a>
+    <a href="#proc" tabindex="-1">Como funciona</a>
+    <a href="#about" tabindex="-1">Sobre a Mikla</a>
+    <a href="#faq" tabindex="-1">FAQ</a>
+    <a href="#final" data-wa class="btn" tabindex="-1">Solicitar orçamento</a>
+  </nav>
+</div>
 
 <main>
 
@@ -476,6 +572,7 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
     </h1>
     <div class="hero-foot">
       <p class="hero-sub">Pra quem já vende pelo Instagram e quer um site que <b>fecha o cliente 24 horas por dia</b>. Do briefing ao ar, do jeito certo.</p>
+      <p class="hero-sub hero-sub2">Desenvolvemos sites profissionais e personalizados para empresas e profissionais que querem transformar a presença digital em uma ferramenta real de <b>apresentação, autoridade e geração de oportunidades</b>.</p>
     </div>
   </div>
 </section>
@@ -525,46 +622,146 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
   </div>
 </section>
 
-<!-- WORK / PORTFOLIO -->
-<section id="work">
+<!-- SOLUÇÕES -->
+<section id="solucoes">
   <div class="wrap">
     <div class="work-head">
-      <h2 class="work-h2 disp">Sites que já<br>estão <span class="it">no ar.</span></h2>
-      <p class="work-note reveal">Cada projeto é desenhado do zero, com a identidade do negócio. Nada genérico, nada repetido. Passe o mouse pra ver de perto.</p>
+      <h2 class="work-h2 disp">O que a Mikla<br>coloca no <span class="it">ar.</span></h2>
+      <p class="work-note reveal">Cada solução é desenvolvida sob medida pro momento do seu negócio.</p>
     </div>
-    <div class="vgal reveal">
-      <div class="vrow is-active" data-vrow>
-        <picture>
-          <source srcset="img/site1.webp" type="image/webp">
-          <img src="img/site1.jpg" alt="Site institucional para psicoterapia junguiana, com seção de agendamento de sessão" loading="lazy" width="1400" height="787">
-        </picture>
-      </div>
-      <div class="vrow" data-vrow>
-        <picture>
-          <source srcset="img/site2.webp" type="image/webp">
-          <img src="img/site2.jpg" alt="Site para nutricionista clínica e esportiva, com plano alimentar personalizado" loading="lazy" width="1400" height="787">
-        </picture>
-      </div>
-      <div class="vrow" data-vrow>
-        <picture>
-          <source srcset="img/site3.webp" type="image/webp">
-          <img src="img/site3.jpg" alt="Site para clínica veterinária especializada em dermatologia de cães e gatos" loading="lazy" width="1400" height="787">
-        </picture>
-      </div>
-      <div class="vrow" data-vrow>
-        <picture>
-          <source srcset="img/site4.webp" type="image/webp">
-          <img src="img/site4.jpg" alt="Site para psicóloga clínica, com foco em psicoterapia e equilíbrio emocional" loading="lazy" width="1400" height="787">
-        </picture>
-      </div>
+    <div class="sol-grid">
+      <article class="sol-card reveal">
+        <span class="sol-num mono">01</span>
+        <h3>Sites institucionais</h3>
+        <p>Presença digital completa pra apresentar sua empresa, seus serviços e gerar confiança antes mesmo do primeiro contato.</p>
+      </article>
+      <article class="sol-card reveal">
+        <span class="sol-num mono">02</span>
+        <h3>Landing Pages</h3>
+        <p>Páginas focadas em conversão, direto ao ponto, pensadas pra transformar visita em contato ou venda.</p>
+      </article>
+      <article class="sol-card reveal">
+        <span class="sol-num mono">03</span>
+        <h3>Sites profissionais</h3>
+        <p>Pra quem vive de reputação e indicação: clínicas, consultórios e prestadores de serviço que precisam de autoridade online.</p>
+      </article>
+      <article class="sol-card reveal">
+        <span class="sol-num mono">04</span>
+        <h3>Sistemas e soluções personalizadas</h3>
+        <p>Quando o site sozinho não resolve, desenvolvemos ferramentas sob medida pra atender a necessidade específica do seu negócio.</p>
+      </article>
+      <article class="sol-card reveal">
+        <span class="sol-num mono">05</span>
+        <h3>Manutenção e suporte</h3>
+        <p>Depois do site no ar, continuamos por perto: ajustes, atualizações e suporte técnico contínuo.</p>
+      </article>
     </div>
-    <div class="work-cta reveal">
-      <p>O seu negócio merece estar <span class="it">aqui também.</span></p>
-      <a href="#final" data-wa class="btn magnetic">
-        <span>Solicitar meu site</span>
-        <span class="ar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-      </a>
+  </div>
+</section>
+
+<!-- PROJETOS / PORTFÓLIO -->
+<section id="projects">
+  <div class="wrap">
+    <div class="work-head">
+      <h2 class="work-h2 disp">Projetos que já<br>estão <span class="it">no ar.</span></h2>
+      <p class="work-note reveal">Negócios de segmentos diferentes, cada um com identidade visual própria. Arraste ou use as setas pra ver mais.</p>
     </div>
+  </div>
+  <div class="pf-wrap reveal">
+    <div class="pf-track" id="pfTrack">
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project01.webp" type="image/webp">
+          <img src="img/project01.jpg" alt="Site institucional para psicóloga clínica, fundo azul-marinho com retrato profissional" loading="lazy" width="1200" height="566">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site institucional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project02.webp" type="image/webp">
+          <img src="img/project02.jpg" alt="Site para nutricionista clínica e esportiva, com fundo de fotografia de alimentos" loading="lazy" width="1200" height="590">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Nutrição Clínica e Esportiva</span><span class="pf-type">Site profissional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project03.webp" type="image/webp">
+          <img src="img/project03.jpg" alt="Site institucional para psicoterapia junguiana, tons claros com retrato acolhedor" loading="lazy" width="1200" height="573">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicoterapia Junguiana</span><span class="pf-type">Site institucional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project04.webp" type="image/webp">
+          <img src="img/project04.jpg" alt="Site institucional para clínica multiprofissional, com foto da recepção física" loading="lazy" width="1200" height="583">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Clínica Multiprofissional</span><span class="pf-type">Site institucional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project05.webp" type="image/webp">
+          <img src="img/project05.jpg" alt="Site profissional para psicóloga clínica, tons claros com tipografia itálica" loading="lazy" width="1200" height="605">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site profissional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project06.webp" type="image/webp">
+          <img src="img/project06.jpg" alt="Site profissional para psicólogo clínico, fundo em gradiente vermelho" loading="lazy" width="1200" height="578">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicólogo Clínico</span><span class="pf-type">Site profissional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project07.webp" type="image/webp">
+          <img src="img/project07.jpg" alt="Site profissional de psicologia com abordagem TCC e ABA, tons claros" loading="lazy" width="1200" height="569">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicologia · TCC e ABA</span><span class="pf-type">Site profissional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project08.webp" type="image/webp">
+          <img src="img/project08.jpg" alt="Site institucional para clínica veterinária especializada em dermatologia de cães e gatos" loading="lazy" width="1200" height="595">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Clínica Veterinária</span><span class="pf-type">Site institucional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project09.webp" type="image/webp">
+          <img src="img/project09.jpg" alt="Site institucional para psicóloga clínica, fundo verde-oliva com retrato profissional" loading="lazy" width="1200" height="573">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site institucional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project10.webp" type="image/webp">
+          <img src="img/project10.jpg" alt="Site profissional para psicóloga clínica, fundo claro com ilustração de borboletas e flores" loading="lazy" width="1200" height="605">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site profissional</span></div>
+      </article>
+      <article class="pf-card">
+        <picture>
+          <source srcset="img/project11.webp" type="image/webp">
+          <img src="img/project11.jpg" alt="Site profissional de psicologia com abordagem de Terapia do Esquema, visual minimalista em tons de vinho" loading="lazy" width="1200" height="568">
+        </picture>
+        <div class="pf-tag"><span class="pf-seg">Psicologia · Terapia do Esquema</span><span class="pf-type">Site profissional</span></div>
+      </article>
+    </div>
+    <div class="pf-nav wrap">
+      <button class="pf-arrow" id="pfPrev" aria-label="Projeto anterior" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      </button>
+      <button class="pf-arrow" id="pfNext" aria-label="Próximo projeto" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="work-cta wrap reveal">
+    <p>O seu negócio merece estar <span class="it">aqui também.</span></p>
+    <a href="#final" data-wa class="btn magnetic">
+      <span>Solicitar meu site</span>
+      <span class="ar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </a>
   </div>
 </section>
 
@@ -596,42 +793,30 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
   <div class="proc-prog"><div class="f" id="proc-f"></div></div>
 </section>
 
-<!-- OFFER / ENTREGÁVEIS -->
-<section id="offer">
+<!-- POR QUE A MIKLA -->
+<section id="why">
   <div class="wrap">
     <div class="offer-head">
-      <h2 class="offer-h2 disp">O que você<br><span class="it">recebe.</span></h2>
-      <p class="offer-sub reveal">Um site que apresenta seu trabalho, responde dúvidas e fecha clientes. Feito do zero, com acompanhamento contínuo.</p>
+      <h2 class="offer-h2 disp">Por que a<br><span class="it">Mikla.</span></h2>
+      <p class="offer-sub reveal">Cada projeto é construído do zero, com atenção nos detalhes que fazem diferença pro seu negócio.</p>
     </div>
     <div class="stack">
       <div class="scard reveal">
-        <div class="scard-top"><span class="scard-label">O que inclui</span><span class="scard-idx">01/03</span></div>
-        <h3>Tudo o que está incluso no <span class="it">acompanhamento.</span></h3>
+        <div class="scard-top"><span class="scard-label">Diferenciais</span><span class="scard-idx">01/02</span></div>
+        <h3>O que acompanha todo projeto <span class="it">Mikla.</span></h3>
         <ul class="scard-ul">
-          <li>Desenvolvimento do site personalizado</li>
-          <li>Design alinhado à identidade da marca</li>
-          <li>Publicação e configuração completa do projeto</li>
-          <li>Ajustes iniciais para entrega</li>
-          <li>Hospedagem do site</li>
-          <li>Manutenção contínua</li>
-          <li>Suporte técnico</li>
-          <li>Atualizações sempre que necessário</li>
-          <li>Correções e melhorias durante a vigência do plano</li>
-          <li>Segurança e monitoramento do site</li>
-          <li>Plano mensal de pagamento</li>
-        </ul>
-      </div>
-      <div class="scard reveal">
-        <div class="scard-top"><span class="scard-label">Como funciona</span><span class="scard-idx">02/03</span></div>
-        <h3>Do briefing ao site no <span class="it">ar.</span></h3>
-        <ul class="scard-ul one">
-          <li><b>Briefing:</b> entendemos seu negócio e seu público.</li>
-          <li><b>Design:</b> layout exclusivo, feito para o seu negócio.</li>
-          <li><b>Aprovação e no ar:</b> você revisa, ajustamos e publicamos com domínio próprio.</li>
+          <li>Design personalizado, sem template genérico</li>
+          <li>Projeto pensado pro seu negócio específico</li>
+          <li>Site totalmente responsivo</li>
+          <li>Integração com WhatsApp</li>
+          <li>Domínio próprio</li>
+          <li>Hospedagem inclusa</li>
+          <li>Suporte e manutenção contínuos</li>
+          <li>Segurança e atualizações do site</li>
         </ul>
       </div>
       <div class="scard dark reveal">
-        <div class="scard-top"><span class="scard-label">Orçamento</span><span class="scard-idx">03/03</span></div>
+        <div class="scard-top"><span class="scard-label">Orçamento</span><span class="scard-idx">02/02</span></div>
         <h3>Sob medida pro seu negócio.</h3>
         <p>Cada negócio tem uma necessidade diferente, por isso o orçamento é sempre personalizado. Fale com a gente no WhatsApp e recebe uma proposta sob medida, sem compromisso.</p>
         <a href="#final" data-wa class="btn magnetic" style="background:#fff;color:var(--navy);">
@@ -643,13 +828,13 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
   </div>
 </section>
 
-<!-- GARANTIA -->
-<section id="guar">
+<!-- SOBRE A MIKLA -->
+<section id="about">
   <div class="wrap">
-    <span class="kick label">Garantia</span>
-    <h2 class="guar-h2"><span class="out">Compromisso</span> <span class="it">total.</span></h2>
+    <span class="kick label">Sobre a Mikla</span>
+    <h2 class="guar-h2"><span class="out">Feito com</span> <span class="it">cuidado.</span></h2>
     <div class="guar-foot">
-      <p class="guar-body">Trabalhamos com rodadas de ajuste incluídas e acompanhamento contínuo depois da entrega. Se algo não representa seu negócio como deveria, a gente ajusta até representar.</p>
+      <p class="guar-body">A Mikla nasceu pra atender quem precisa de um site que realmente funcione dentro da estratégia digital do negócio — não só bonito, mas com função clara: apresentar, gerar confiança e converter. Cada projeto passa por briefing, design exclusivo e rodadas de ajuste antes de ir ao ar, com acompanhamento contínuo depois da entrega.</p>
       <a href="#final" data-wa class="guar-cta">
         <span>Falar no WhatsApp</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
@@ -679,21 +864,41 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
         <button class="faq-q"><span class="qt">Vocês fazem o site do zero ou reaproveitam alguma base pronta?</span><span class="faq-ic"></span></button>
         <div class="faq-a"><p>Do zero, sempre. Cada site é desenhado em cima do seu negócio, e é isso que separa um site que converte de um que só existe.</p></div>
       </div>
-      <div class="faq-item hidden" data-cat="processo">
-        <button class="faq-q"><span class="qt">Preciso ter domínio e hospedagem antes?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>Não. Cuidamos de tudo isso pra você. Domínio, publicação e hospedagem entram no processo, sem você precisar entender nada disso antes.</p></div>
+      <div class="faq-item" data-cat="geral">
+        <button class="faq-q"><span class="qt">O site funciona no celular?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Sim. Todo site é desenvolvido responsivo, adaptado pra funcionar bem em celular, tablet e computador.</p></div>
+      </div>
+      <div class="faq-item" data-cat="geral">
+        <button class="faq-q"><span class="qt">O site pode ter botão de WhatsApp?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Sim, o botão de WhatsApp é padrão nos projetos — é um dos jeitos mais diretos de transformar visita em contato.</p></div>
       </div>
       <div class="faq-item hidden" data-cat="processo">
-        <button class="faq-q"><span class="qt">Preciso entender de tecnologia pra manter o site?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>Não. Você só usa o site. Qualquer atualização ou ajuste técnico é com a gente.</p></div>
+        <button class="faq-q"><span class="qt">Quanto tempo leva para o site ficar pronto?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Landing pages ficam prontas em até 48h úteis. Sites maiores ou mais completos têm prazo combinado no briefing, de acordo com a complexidade do projeto.</p></div>
       </div>
       <div class="faq-item hidden" data-cat="processo">
-        <button class="faq-q"><span class="qt">Posso pedir alterações depois que o site estiver no ar?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>Sim. O acompanhamento contínuo existe justamente pra isso. Seu negócio muda, e o site acompanha.</p></div>
+        <button class="faq-q"><span class="qt">Posso solicitar alterações?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Sim. Você revisa o projeto antes da publicação e pode pedir ajustes. Depois do site no ar, o acompanhamento contínuo permite solicitar novas alterações.</p></div>
+      </div>
+      <div class="faq-item hidden" data-cat="processo">
+        <button class="faq-q"><span class="qt">A Mikla faz manutenção depois da entrega?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Sim. Manutenção, atualizações e suporte técnico continuam fazendo parte do acompanhamento depois da publicação.</p></div>
+      </div>
+      <div class="faq-item hidden" data-cat="processo">
+        <button class="faq-q"><span class="qt">Posso atualizar o conteúdo futuramente?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Sim. Sempre que seu negócio mudar — novo serviço, novo texto, nova foto — é só pedir a atualização.</p></div>
       </div>
       <div class="faq-item hidden" data-cat="pagamento">
-        <button class="faq-q"><span class="qt">Como funciona o pagamento?</span><span class="faq-ic"></span></button>
-        <div class="faq-a"><p>É simples e combinado com você no orçamento, sem burocracia. A gente te explica tudo direto no WhatsApp, sob medida pro seu caso.</p></div>
+        <button class="faq-q"><span class="qt">Quanto custa criar um site?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>O valor varia de acordo com o tipo de projeto e as necessidades do seu negócio. Por isso o orçamento é sempre personalizado — fale com a gente no WhatsApp e receba uma proposta sob medida, sem compromisso.</p></div>
+      </div>
+      <div class="faq-item hidden" data-cat="pagamento">
+        <button class="faq-q"><span class="qt">O domínio está incluso?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Sim. A publicação com domínio próprio faz parte do processo — cuidamos disso pra você.</p></div>
+      </div>
+      <div class="faq-item hidden" data-cat="pagamento">
+        <button class="faq-q"><span class="qt">A hospedagem está inclusa?</span><span class="faq-ic"></span></button>
+        <div class="faq-a"><p>Sim, a hospedagem está inclusa no acompanhamento contínuo do seu site.</p></div>
       </div>
     </div>
   </div>
@@ -704,14 +909,14 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
   <div class="wrap">
     <span class="kick label">Chega de perder cliente por falta de site</span>
     <h2 class="final-h2">
-      <span class="ln"><span>Bora colocar</span></span>
-      <span class="ln"><span>seu negócio</span></span>
-      <span class="ln"><span>no <span class="it">ar?</span></span></span>
+      <span class="ln"><span>Seu negócio</span></span>
+      <span class="ln"><span>já tem presença digital.</span></span>
+      <span class="ln"><span>Falta um site à <span class="it">altura.</span></span></span>
     </h2>
     <p class="final-body">Fale agora no WhatsApp e receba um orçamento personalizado pro seu negócio.</p>
     <div class="final-actions">
       <a href="#" data-wa class="btn magnetic" style="font-size:1.05rem;padding:18px 20px 18px 30px;">
-        <span>Falar no WhatsApp agora</span>
+        <span>Quero criar meu site</span>
         <span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
       </a>
       <span class="final-fine">Resposta rápida · Orçamento sem compromisso</span>
@@ -766,6 +971,33 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
     lastY = y;
   }, { passive: true });
 
+  /* ---------- Hambúrguer / menu mobile ---------- */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  function closeMobileMenu(){
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+    mobileMenu.querySelectorAll('a').forEach(function(a){ a.setAttribute('tabindex', '-1'); });
+  }
+  function openMobileMenu(){
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+    mobileMenu.querySelectorAll('a').forEach(function(a){ a.removeAttribute('tabindex'); });
+  }
+  if(hamburger && mobileMenu){
+    hamburger.addEventListener('click', function(){
+      var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      if(isOpen){ closeMobileMenu(); } else { openMobileMenu(); }
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMobileMenu);
+    });
+  }
+
   /* ---------- Cursor grid reveal ---------- */
   var gridReveal = document.getElementById('grid-reveal');
   window.addEventListener('pointermove', function(e){
@@ -806,15 +1038,25 @@ main,#nav,#mq,footer{position:relative;z-index:1;}
   if(finalH2) ioFinal.observe(finalH2);
   if(finalActions) ioFinal.observe(finalActions);
 
-  /* ---------- Portfolio vertical accordion ---------- */
-  var vrows = document.querySelectorAll('[data-vrow]');
-  vrows.forEach(function(row){
-    row.addEventListener('mouseenter', function(){ open(row); });
-    row.addEventListener('click', function(){ open(row); });
-  });
-  function open(row){
-    vrows.forEach(function(r){ r.classList.remove('is-active'); });
-    row.classList.add('is-active');
+  /* ---------- Galeria de projetos: setas + scroll horizontal ---------- */
+  var pfTrack = document.getElementById('pfTrack');
+  var pfPrev = document.getElementById('pfPrev');
+  var pfNext = document.getElementById('pfNext');
+  if(pfTrack && pfPrev && pfNext){
+    function pfStep(){
+      var card = pfTrack.querySelector('.pf-card');
+      var gap = parseFloat(getComputedStyle(pfTrack).gap) || 22;
+      return card ? card.getBoundingClientRect().width + gap : 320;
+    }
+    pfPrev.addEventListener('click', function(){ pfTrack.scrollBy({ left: -pfStep(), behavior: 'smooth' }); });
+    pfNext.addEventListener('click', function(){ pfTrack.scrollBy({ left: pfStep(), behavior: 'smooth' }); });
+    function updatePfArrows(){
+      pfPrev.disabled = pfTrack.scrollLeft < 10;
+      pfNext.disabled = pfTrack.scrollLeft > pfTrack.scrollWidth - pfTrack.clientWidth - 10;
+    }
+    pfTrack.addEventListener('scroll', updatePfArrows, { passive: true });
+    window.addEventListener('resize', updatePfArrows);
+    updatePfArrows();
   }
 
   /* ---------- FAQ tabs + accordion ---------- */
