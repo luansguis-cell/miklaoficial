@@ -42,5 +42,5 @@ Mikla é um estúdio digital que atende negócios de qualquer porte e segmento n
 ## Optional
 
 - Orçamento é sempre personalizado por projeto (sem preço fixo publicado). Pagamento à vista ou parcelado.
-- Site institucional único (sem blog ou múltiplas páginas indexáveis além da home e da página 404).
+- Site institucional (sem blog), com home, página 404, Termos de Uso e Política de Privacidade.
 - Conteúdo mantido por Mikla. Última atualização deste arquivo: 2026-08-20.
