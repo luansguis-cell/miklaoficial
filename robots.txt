@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Crawlers de IA (GEO) — permitidos explicitamente para citação/indexação
+# Crawlers de IA (GEO): permitidos explicitamente para citação/indexação
 # em respostas de assistentes de IA. "User-agent: *" acima já libera tudo;
 # estas linhas só deixam a intenção explícita e documentada.
 User-agent: GPTBot

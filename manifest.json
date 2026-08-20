@@ -1,12 +1,12 @@
 {
-  "name": "Mikla | Sites & Sistemas",
+  "name": "Mikla",
   "short_name": "Mikla",
-  "description": "Sites, redes sociais, catálogos e ferramentas digitais para MEIs, autônomos e pequenos negócios.",
+  "description": "Sites, sistemas, tráfego pago, redes sociais e design gráfico para negócios de todos os portes e segmentos.",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
-  "background_color": "#07060d",
-  "theme_color": "#07060d",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "lang": "pt-BR",
   "icons": [
     { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
