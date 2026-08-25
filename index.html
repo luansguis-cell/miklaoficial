@@ -283,8 +283,8 @@ img{max-width:100%;display:block;}
 .label{font-family:var(--mono);font-size:clamp(0.62rem,0.85vw,0.74rem);letter-spacing:0.2em;text-transform:uppercase;}
 p,li{text-wrap:pretty;}
 
-/* ===== NAV (floating bar) ===== */
-#nav{position:fixed;top:clamp(10px,2.2vw,22px);left:50%;transform:translateX(-50%);width:min(85%,1180px);z-index:800;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:8px 10px 8px 24px;background:var(--navy-vivid);border-radius:16px;}
+/* ===== NAV (barra no topo, rola junto com a página) ===== */
+#nav{position:relative;margin:clamp(10px,2.2vw,22px) auto 0;width:min(85%,1180px);z-index:800;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:8px 10px 8px 24px;background:var(--navy-vivid);border-radius:16px;}
 .nav-logo img{height:36px;width:auto;}
 .nav-mid{display:flex;gap:22px;flex-wrap:wrap;}
 .nav-mid a{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.94);transition:color .25s;white-space:nowrap;}
@@ -319,7 +319,7 @@ p,li{text-wrap:pretty;}
 body.menu-open{overflow:hidden;}
 
 /* ===== HERO ===== */
-#hero{position:relative;min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;padding:132px var(--pad) clamp(40px,8vh,90px);overflow:hidden;}
+#hero{position:relative;min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(40px,6vh,72px) var(--pad) clamp(40px,8vh,90px);overflow:hidden;}
 #hero-inner{position:relative;z-index:2;text-align:center;}
 .hero-h1{font-size:var(--fs-mega);text-transform:uppercase;font-family:var(--disp);font-weight:800;letter-spacing:-0.035em;line-height:0.86;color:var(--navy);}
 .hero-h1 .ln{display:block;overflow:hidden;padding-top:0.2em;margin-top:-0.2em;}
@@ -395,21 +395,24 @@ body.menu-open{overflow:hidden;}
 .work-note{font-size:1rem;line-height:1.6;color:var(--soft);}
 @media(max-width:760px){.work-head{grid-template-columns:1fr;}}
 
-.pf-wrap{position:relative;}
-.pf-track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px var(--pad) 30px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.pf-track::-webkit-scrollbar{display:none;}
-.pf-card{position:relative;flex:0 0 auto;width:min(70vw,620px);scroll-snap-align:start;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--bg);}
-.pf-card picture{display:block;overflow:hidden;}
-.pf-card img{width:100%;height:auto;aspect-ratio:1200/595;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1);}
-.pf-card:hover img{transform:scale(1.045);}
-.pf-tag{position:absolute;left:18px;bottom:18px;display:flex;flex-direction:column;gap:2px;padding:10px 16px;border-radius:10px;background:rgba(13,27,110,0.92);max-width:calc(100% - 36px);}
-.pf-seg{font-family:var(--disp);font-weight:700;font-size:0.95rem;color:#fff;letter-spacing:-0.01em;}
-.pf-type{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.72);}
-.pf-nav{display:flex;gap:12px;justify-content:flex-end;margin-top:2px;}
-.pf-arrow{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--navy);display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s;flex-shrink:0;}
-.pf-arrow:hover{background:var(--navy);color:#fff;border-color:transparent;transform:translateY(-2px);}
-.pf-arrow:disabled{opacity:.3;cursor:default;pointer-events:none;}
-@media(max-width:640px){.pf-card{width:82vw;border-radius:12px;}.pf-tag{left:12px;bottom:12px;padding:8px 12px;}.pf-nav{display:none;}}
+.vgal{display:flex;flex-direction:column;gap:10px;}
+.vrow{position:relative;width:100%;height:64px;overflow:hidden;border-radius:14px;cursor:pointer;border:1px solid var(--line);background:var(--bg2);transition:height .55s cubic-bezier(.16,1,.3,1);will-change:height;}
+.vrow:focus-visible{outline:2px solid var(--accent-dark);outline-offset:2px;}
+.vrow.is-active{height:var(--openh,60vh);}
+.vrow picture{position:absolute;inset:0;display:block;}
+.vrow img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.vrow-tag{position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:2;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,0.55);transition:opacity .3s;}
+.vrow.is-active .vrow-tag{opacity:0;}
+.vrow-cap{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:12px 18px;border-radius:12px;background:rgba(13,27,110,0.88);opacity:0;transform:translateY(14px);transition:opacity .45s,transform .55s cubic-bezier(.16,1,.3,1);}
+.vrow.is-active .vrow-cap{opacity:1;transform:none;}
+.vrow-cap h3{font-family:var(--disp);font-weight:700;font-size:clamp(1.05rem,1.8vw,1.5rem);letter-spacing:-0.02em;color:#fff;}
+.vrow-cap .vn{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.06em;color:rgba(255,255,255,0.72);white-space:nowrap;}
+@media(max-width:640px){
+  .vrow{height:56px;border-radius:10px;}
+  .vrow-tag{left:16px;font-size:0.66rem;}
+  .vrow-cap{left:12px;right:12px;bottom:12px;padding:10px 14px;}
+  .vrow-cap h3{font-size:1rem;}
+}
 
 .work-cta{margin-top:clamp(44px,6vw,76px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:clamp(26px,3vw,38px);border-top:1px solid var(--line);}
 .work-cta p{font-family:var(--disp);font-weight:500;font-size:clamp(1.1rem,2.2vw,1.8rem);letter-spacing:-0.02em;max-width:24ch;color:var(--navy);}
@@ -706,96 +709,97 @@ main,#mq,footer{position:relative;z-index:1;}
   <div class="wrap">
     <div class="work-head">
       <h2 class="work-h2 disp">Projetos que já<br>estão <span class="it">no ar.</span></h2>
-      <p class="work-note reveal">Negócios de segmentos diferentes, cada um com identidade visual própria. Arraste ou use as setas pra ver mais.</p>
+      <p class="work-note reveal">Negócios de segmentos diferentes, cada um com identidade visual própria. Passe o mouse ou toque pra ver cada projeto.</p>
     </div>
-  </div>
-  <div class="pf-wrap reveal">
-    <div class="pf-track" id="pfTrack">
-      <article class="pf-card">
+    <div class="vgal">
+      <div class="vrow is-active" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicóloga Clínica</span>
         <picture>
           <source srcset="img/project01.webp" type="image/webp">
-          <img src="img/project01.jpg" alt="Site institucional para psicóloga clínica, fundo azul-marinho com retrato profissional" loading="lazy" width="1200" height="566">
+          <img src="img/project01.jpg" alt="Site institucional para psicóloga clínica, fundo azul-marinho com retrato profissional" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site institucional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Psicóloga Clínica</h3><span class="vn">Site institucional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Nutrição Clínica e Esportiva</span>
         <picture>
           <source srcset="img/project02.webp" type="image/webp">
-          <img src="img/project02.jpg" alt="Site para nutricionista clínica e esportiva, com fundo de fotografia de alimentos" loading="lazy" width="1200" height="590">
+          <img src="img/project02.jpg" alt="Site para nutricionista clínica e esportiva, com fundo de fotografia de alimentos" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Nutrição Clínica e Esportiva</span><span class="pf-type">Site profissional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Nutrição Clínica e Esportiva</h3><span class="vn">Site profissional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicoterapia Junguiana</span>
         <picture>
           <source srcset="img/project03.webp" type="image/webp">
-          <img src="img/project03.jpg" alt="Site institucional para psicoterapia junguiana, tons claros com retrato acolhedor" loading="lazy" width="1200" height="573">
+          <img src="img/project03.jpg" alt="Site institucional para psicoterapia junguiana, tons claros com retrato acolhedor" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicoterapia Junguiana</span><span class="pf-type">Site institucional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Psicoterapia Junguiana</h3><span class="vn">Site institucional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Clínica Multiprofissional</span>
         <picture>
           <source srcset="img/project04.webp" type="image/webp">
-          <img src="img/project04.jpg" alt="Site institucional para clínica multiprofissional, com foto da recepção física" loading="lazy" width="1200" height="583">
+          <img src="img/project04.jpg" alt="Site institucional para clínica multiprofissional, com foto da recepção física" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Clínica Multiprofissional</span><span class="pf-type">Site institucional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Clínica Multiprofissional</h3><span class="vn">Site institucional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicóloga Clínica</span>
         <picture>
           <source srcset="img/project05.webp" type="image/webp">
-          <img src="img/project05.jpg" alt="Site profissional para psicóloga clínica, tons claros com tipografia itálica" loading="lazy" width="1200" height="605">
+          <img src="img/project05.jpg" alt="Site profissional para psicóloga clínica, tons claros com tipografia itálica" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site profissional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Psicóloga Clínica</h3><span class="vn">Site profissional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicólogo Clínico</span>
         <picture>
           <source srcset="img/project06.webp" type="image/webp">
-          <img src="img/project06.jpg" alt="Site profissional para psicólogo clínico, fundo em gradiente vermelho" loading="lazy" width="1200" height="578">
+          <img src="img/project06.jpg" alt="Site profissional para psicólogo clínico, fundo em gradiente vermelho" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicólogo Clínico</span><span class="pf-type">Site profissional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Psicólogo Clínico</h3><span class="vn">Site profissional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicologia · TCC e ABA</span>
         <picture>
           <source srcset="img/project07.webp" type="image/webp">
-          <img src="img/project07.jpg" alt="Site profissional de psicologia com abordagem TCC e ABA, tons claros" loading="lazy" width="1200" height="569">
+          <img src="img/project07.jpg" alt="Site profissional de psicologia com abordagem TCC e ABA, tons claros" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicologia · TCC e ABA</span><span class="pf-type">Site profissional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Psicologia · TCC e ABA</h3><span class="vn">Site profissional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Clínica Veterinária</span>
         <picture>
           <source srcset="img/project08.webp" type="image/webp">
-          <img src="img/project08.jpg" alt="Site institucional para clínica veterinária especializada em dermatologia de cães e gatos" loading="lazy" width="1200" height="595">
+          <img src="img/project08.jpg" alt="Site institucional para clínica veterinária especializada em dermatologia de cães e gatos" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Clínica Veterinária</span><span class="pf-type">Site institucional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Clínica Veterinária</h3><span class="vn">Site institucional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicóloga Clínica</span>
         <picture>
           <source srcset="img/project09.webp" type="image/webp">
-          <img src="img/project09.jpg" alt="Site institucional para psicóloga clínica, fundo verde-oliva com retrato profissional" loading="lazy" width="1200" height="573">
+          <img src="img/project09.jpg" alt="Site institucional para psicóloga clínica, fundo verde-oliva com retrato profissional" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site institucional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Psicóloga Clínica</h3><span class="vn">Site institucional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicóloga Clínica</span>
         <picture>
           <source srcset="img/project10.webp" type="image/webp">
-          <img src="img/project10.jpg" alt="Site profissional para psicóloga clínica, fundo claro com ilustração de borboletas e flores" loading="lazy" width="1200" height="605">
+          <img src="img/project10.jpg" alt="Site profissional para psicóloga clínica, fundo claro com ilustração de borboletas e flores" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicóloga Clínica</span><span class="pf-type">Site profissional</span></div>
-      </article>
-      <article class="pf-card">
+        <div class="vrow-cap"><h3>Psicóloga Clínica</h3><span class="vn">Site profissional</span></div>
+      </div>
+      <div class="vrow" data-vrow tabindex="0" role="button">
+        <span class="vrow-tag">Psicologia · Terapia do Esquema</span>
         <picture>
           <source srcset="img/project11.webp" type="image/webp">
-          <img src="img/project11.jpg" alt="Site profissional de psicologia com abordagem de Terapia do Esquema, visual minimalista em tons de vinho" loading="lazy" width="1200" height="568">
+          <img src="img/project11.jpg" alt="Site profissional de psicologia com abordagem de Terapia do Esquema, visual minimalista em tons de vinho" loading="lazy">
         </picture>
-        <div class="pf-tag"><span class="pf-seg">Psicologia · Terapia do Esquema</span><span class="pf-type">Site profissional</span></div>
-      </article>
-    </div>
-    <div class="pf-nav wrap">
-      <button class="pf-arrow" id="pfPrev" aria-label="Projeto anterior" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      </button>
-      <button class="pf-arrow" id="pfNext" aria-label="Próximo projeto" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
+        <div class="vrow-cap"><h3>Psicologia · Terapia do Esquema</h3><span class="vn">Site profissional</span></div>
+      </div>
     </div>
   </div>
   <div class="work-cta wrap reveal">
@@ -1096,25 +1100,39 @@ main,#mq,footer{position:relative;z-index:1;}
   if(finalH2) ioFinal.observe(finalH2);
   if(finalActions) ioFinal.observe(finalActions);
 
-  /* ---------- Galeria de projetos: setas + scroll horizontal ---------- */
-  var pfTrack = document.getElementById('pfTrack');
-  var pfPrev = document.getElementById('pfPrev');
-  var pfNext = document.getElementById('pfNext');
-  if(pfTrack && pfPrev && pfNext){
-    function pfStep(){
-      var card = pfTrack.querySelector('.pf-card');
-      var gap = parseFloat(getComputedStyle(pfTrack).gap) || 22;
-      return card ? card.getBoundingClientRect().width + gap : 320;
+  /* ---------- Galeria de projetos: linhas verticais que expandem ---------- */
+  var vrows = document.querySelectorAll('[data-vrow]');
+  if(vrows.length){
+    var canHoverGal = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    function sizeVrows(){
+      vrows.forEach(function(r){
+        var img = r.querySelector('img');
+        if(!img) return;
+        var apply = function(){
+          var w = r.clientWidth || 1;
+          var ratio = (img.naturalWidth && img.naturalHeight) ? img.naturalWidth / img.naturalHeight : 16/9;
+          r.style.setProperty('--openh', Math.round(w / ratio) + 'px');
+        };
+        if(img.complete && img.naturalWidth){ apply(); } else { img.addEventListener('load', apply, { once: true }); }
+      });
     }
-    pfPrev.addEventListener('click', function(){ pfTrack.scrollBy({ left: -pfStep(), behavior: 'smooth' }); });
-    pfNext.addEventListener('click', function(){ pfTrack.scrollBy({ left: pfStep(), behavior: 'smooth' }); });
-    function updatePfArrows(){
-      pfPrev.disabled = pfTrack.scrollLeft < 10;
-      pfNext.disabled = pfTrack.scrollLeft > pfTrack.scrollWidth - pfTrack.clientWidth - 10;
+    sizeVrows();
+    var vrz;
+    window.addEventListener('resize', function(){ clearTimeout(vrz); vrz = setTimeout(sizeVrows, 200); });
+    var vrt;
+    function activateVrow(r){
+      vrows.forEach(function(x){ x.classList.remove('is-active'); });
+      r.classList.add('is-active');
+      clearTimeout(vrt);
+      vrt = setTimeout(function(){ if(window.ScrollTrigger) ScrollTrigger.refresh(); }, 420);
     }
-    pfTrack.addEventListener('scroll', updatePfArrows, { passive: true });
-    window.addEventListener('resize', updatePfArrows);
-    updatePfArrows();
+    vrows.forEach(function(r){
+      if(canHoverGal){ r.addEventListener('mouseenter', function(){ activateVrow(r); }); }
+      r.addEventListener('click', function(){ activateVrow(r); });
+      r.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); activateVrow(r); }
+      });
+    });
   }
 
   /* ---------- FAQ tabs + accordion ---------- */
@@ -1196,6 +1214,14 @@ main,#mq,footer{position:relative;z-index:1;}
           gsap.ticker.add(function(time){ lenis.raf(time*1000); });
         }
       }catch(e){}
+    }
+
+    if(window.gsap && window.ScrollTrigger && vrows.length){
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.from(vrows, {
+        y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.07,
+        scrollTrigger: { trigger: '.vgal', start: 'top 85%', toggleActions: 'play none none reverse' }
+      });
     }
   });
 })();
