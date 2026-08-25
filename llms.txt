@@ -1,26 +1,33 @@
-# Mikla | Sites & Sistemas
+# Mikla
 
-> Estúdio digital brasileiro que cria sites profissionais sob medida para MEIs, autônomos e pequenos negócios que já vendem pelo Instagram e precisam de um site que feche clientes 24 horas por dia.
+> Estúdio digital brasileiro que cria sites, sistemas, tráfego pago, redes sociais e design gráfico para negócios de todos os portes e segmentos.
 
 ## Quem somos
 
-Mikla é um estúdio de criação de sites focado em pequenos negócios e profissionais autônomos no Brasil. Cada site é desenhado do zero, sem templates genéricos, com identidade visual própria do cliente. Site: [miklaoficial](https://www.mikla.com.br/).
+Mikla é um estúdio digital que atende negócios de qualquer porte e segmento no Brasil, de quem está começando a grandes players. Cada projeto é desenhado do zero, sem templates genéricos, com identidade visual própria do cliente. Site: [miklaoficial](https://www.mikla.com.br/).
 
 ## Serviços
 
-- Criação de sites institucionais e landing pages sob medida
-- Design exclusivo alinhado à identidade da marca do cliente
-- Publicação com domínio próprio
-- Integração com WhatsApp para geração de leads
-- Hospedagem, manutenção contínua e suporte técnico incluídos no plano
-- Landing pages entregues em até 48h úteis; demais sites sob consulta
+- Sites institucionais e landing pages sob medida
+- Catálogos digitais
+- E-commerce
+- Sistemas e soluções personalizadas
+- Tráfego pago (Meta Ads e Google Ads)
+- Gestão de redes sociais
+- Design gráfico
+- Hospedagem, manutenção contínua e suporte técnico incluídos nos projetos de site
+- Landing pages entregues em até 48h úteis; demais projetos sob consulta
 
 ## Como funciona
 
-1. Briefing — entendimento do negócio, público e objetivos
-2. Design — layout exclusivo criado do zero
-3. Aprovação — rodadas de ajuste até o site representar o negócio
-4. Publicação — site no ar com domínio próprio e botão de WhatsApp
+1. Briefing: entendimento do negócio, público e objetivos
+2. Design: layout exclusivo criado do zero
+3. Aprovação: rodadas de ajuste até o resultado representar o negócio
+4. Publicação: projeto no ar, com domínio próprio e botão de WhatsApp quando aplicável
+
+## Prova social
+
+- 5,0 de 5 estrelas em 30 avaliações reais no Google.
 
 ## Contato
 
@@ -34,6 +41,6 @@ Mikla é um estúdio de criação de sites focado em pequenos negócios e profis
 
 ## Optional
 
-- Orçamento é sempre personalizado por projeto (sem preço fixo publicado).
-- Site institucional único (sem blog ou múltiplas páginas indexáveis além da home e da página 404).
-- Conteúdo mantido por Mikla. Última atualização deste arquivo: 2026-07-29.
+- Orçamento é sempre personalizado por projeto (sem preço fixo publicado). Pagamento à vista ou parcelado.
+- Site institucional (sem blog), com home, página 404, Termos de Uso e Política de Privacidade.
+- Conteúdo mantido por Mikla. Última atualização deste arquivo: 2026-08-20.
