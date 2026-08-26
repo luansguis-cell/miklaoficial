@@ -320,6 +320,12 @@ body.menu-open{overflow:hidden;}
 
 /* ===== HERO ===== */
 #hero{position:relative;min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(40px,6vh,72px) var(--pad) clamp(40px,8vh,90px);overflow:hidden;}
+.hero-sq{position:absolute;pointer-events:none;animation:sqfloat 7s ease-in-out infinite;}
+.hero-sq.a{width:22px;height:22px;background:var(--accent);top:14%;left:6%;animation-delay:0s;}
+.hero-sq.b{width:34px;height:34px;background:var(--navy-vivid);top:60%;right:7%;animation-delay:1.2s;}
+.hero-sq.c{width:14px;height:14px;background:var(--accent);bottom:8%;left:14%;animation-delay:2.4s;}
+@keyframes sqfloat{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-14px) rotate(10deg);}}
+@media(max-width:760px){.hero-sq{display:none;}}
 #hero-inner{position:relative;z-index:2;text-align:center;}
 .hero-h1{font-size:var(--fs-mega);text-transform:uppercase;font-family:var(--disp);font-weight:800;letter-spacing:-0.035em;line-height:0.86;color:var(--navy);}
 .hero-h1 .ln{display:block;overflow:hidden;padding-top:0.2em;margin-top:-0.2em;}
@@ -371,11 +377,15 @@ body.menu-open{overflow:hidden;}
 @media(max-width:760px){.prow{grid-template-columns:1fr;gap:8px;}.prow .px{display:none;}.prow .pdot{display:none;}}
 
 /* ===== STATEMENT ===== */
-#statement{padding:clamp(30px,6vw,90px) 0;}
-.stmt{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1.15;font-size:clamp(1.8rem,5.4vw,4.6rem);max-width:26ch;color:var(--navy);}
+#statement{background:var(--navy);padding:clamp(60px,9vw,120px) 0;position:relative;overflow:hidden;}
+.stmt{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1.15;font-size:clamp(1.8rem,5.4vw,4.6rem);max-width:26ch;color:#fff;position:relative;z-index:1;}
 .stmt span.ln2{display:block;}
-.stmt .it{text-transform:none;}
-.stmt .w{color:var(--faint);}
+.stmt .it{text-transform:none;color:#ff6fc0;}
+.stmt .w{color:rgba(255,255,255,0.4);}
+.stmt-sq{position:absolute;pointer-events:none;}
+.stmt-sq.a{width:26px;height:26px;background:var(--accent);top:-10px;right:14%;transform:rotate(8deg);}
+.stmt-sq.b{width:16px;height:16px;background:#fff;opacity:.5;bottom:12%;right:6%;transform:rotate(-6deg);}
+.stmt-sq.c{width:12px;height:12px;background:var(--accent);bottom:-6px;left:8%;transform:rotate(20deg);}
 
 /* ===== SOLUÇÕES ===== */
 #solucoes{padding:var(--gap) 0;}
@@ -597,6 +607,9 @@ main,#mq,footer{position:relative;z-index:1;}
 
 <!-- HERO -->
 <section id="hero">
+  <span class="hero-sq a" aria-hidden="true"></span>
+  <span class="hero-sq b" aria-hidden="true"></span>
+  <span class="hero-sq c" aria-hidden="true"></span>
   <div id="hero-inner">
     <h1 class="hero-h1">
       <span class="ln"><span>Presença digital</span></span>
@@ -648,6 +661,9 @@ main,#mq,footer{position:relative;z-index:1;}
 
 <!-- STATEMENT -->
 <section id="statement">
+  <span class="stmt-sq a" aria-hidden="true"></span>
+  <span class="stmt-sq b" aria-hidden="true"></span>
+  <span class="stmt-sq c" aria-hidden="true"></span>
   <div class="wrap">
     <p class="stmt reveal"><span class="ln2 w">As redes atraem.</span><span class="ln2 it">A presença converte.</span><span class="ln2 w">Seu negócio precisa das duas.</span></p>
   </div>
